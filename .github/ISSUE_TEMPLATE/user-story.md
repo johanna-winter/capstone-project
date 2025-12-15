@@ -1,3 +1,10 @@
+---
+name: User Story
+about: Create a user story with value proposition and acceptance criteria
+title: ""
+labels: user-story
+---
+
 ## Value proposition
 As a <user/role>  
 I want to <feature/goal>  
