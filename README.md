@@ -1,40 +1,88 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
+# Memory Wall
 
-## Getting Started
+Memory Wall is a web application for collecting and displaying shared memories at events. It allows an event organizer to create an event and invite guests to upload photos and optional messages via a shared link — without requiring accounts or logins.
 
-First, run the development server:
+The project was built as a capstone project and focuses on a clearly scoped MVP that demonstrates full-stack development, API integration, database usage, and deployment.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+---
+
+## MVP Scope
+
+The MVP of Memory Wall focuses on one simple user flow:
+
+An organizer creates an event and shares a link with guests. Guests can upload photos and optional captions to the event. All uploads are stored externally and linked to the event in a database. The organizer can view the collected memories in a gallery, update basic event details if needed, and delete unwanted uploads.
+
+The memory wall can update automatically to reflect new submissions without requiring a full page reload. The MVP intentionally avoids authentication and real-time technologies to keep the scope manageable and the core functionality reliable.
+
+---
+
+## User Roles
+
+### Organizer
+
+- Creates an event
+- Views all uploaded photos and messages
+- Updates basic event details (name, date)
+- Deletes unwanted uploads
+
+### Guest
+
+- Accesses the event via a shared link
+- Uploads photos and optional messages
+- No account or login required
+
+---
+
+## Core Features
+
+- Event creation with basic details
+- Guest photo uploads via shared event link
+- External media storage
+- Central memory wall gallery per event
+- Automatic gallery updates at regular intervals
+- Deletion of uploads by the organizer
+- Public deployment
+
+---
+
+## Tech Stack
+
+- **Frontend:** Next.js (React)
+- **Backend:** Next.js API Routes
+- **Database:** MongoDB
+- **Media Storage:** Cloudinary
+- **Deployment:** Vercel
+- **Version Control:** Git & GitHub
+
+---
+
+## CRUD Overview
+
+The application demonstrates full CRUD functionality across different entities:
+
+- **Create**
+  - Create events
+  - Upload photos and messages
+- **Read**
+  - View event details
+  - View memory wall gallery
+- **Update**
+  - Edit event name and date
+- **Delete**
+  - Delete uploaded photos and associated metadata
+
+---
+
+## Project Structure
+
+```text
+src/
+├── pages/
+│   ├── index.js
+│   ├── api/
+│   │   ├── events.js
+│   │   └── uploads.js
+├── components/
+├── styles/
+public/
 ```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) instead of React pages.
-
-This project uses [`next/font`](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn-pages-router) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/pages/building-your-application/deploying) for more details.
