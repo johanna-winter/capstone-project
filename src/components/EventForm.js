@@ -1,9 +1,8 @@
 export default function EventForm() {
   function getMinDate() {
-    const minDate = new Date();
-    return `${minDate.getFullYear()}-${
-      minDate.getMonth() + 1
-    }-${minDate.getDate()}`;
+    const date = new Date();
+    const formattedDate = date.toISOString().slice(0, 10);
+    return formattedDate;
   }
   return (
     <>
