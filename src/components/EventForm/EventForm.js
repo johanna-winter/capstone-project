@@ -1,6 +1,28 @@
 import { StyledEventForm } from "./StyledEventForm";
 
 export default function EventForm() {
+  async function handleSubmit(event) {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+    const eventData = Object.fromEntries(formData);
+
+    try {
+      const response = await fetch("/api/events", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(eventData),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to create event");
+      }
+      const data = await response.json();
+      console.log("Event created: ", data);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
   function getMinDate() {
     const date = new Date();
     const formattedDate = date.toISOString().slice(0, 10);
@@ -8,7 +30,7 @@ export default function EventForm() {
   }
   return (
     <>
-      <StyledEventForm>
+      <StyledEventForm onSubmit={handleSubmit}>
         <h2>Add your event</h2>
         <label htmlFor="event-title">Title:</label>
         <input
