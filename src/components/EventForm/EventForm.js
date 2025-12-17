@@ -1,3 +1,5 @@
+import { StyledEventForm } from "./StyledEventForm";
+
 export default function EventForm() {
   function getMinDate() {
     const date = new Date();
@@ -6,8 +8,8 @@ export default function EventForm() {
   }
   return (
     <>
-      <h2>Add your event</h2>
-      <form>
+      <StyledEventForm>
+        <h2>Add your event</h2>
         <label htmlFor="event-title">Title:</label>
         <input
           id="event-title"
@@ -28,7 +30,7 @@ export default function EventForm() {
         <label htmlFor="event-date">Date:</label>
         <input id="event-date" type="date" name="date" min={getMinDate()} />
         <button type="submit">Create event</button>
-      </form>
+      </StyledEventForm>
     </>
   );
 }
