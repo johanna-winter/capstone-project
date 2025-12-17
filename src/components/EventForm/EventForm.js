@@ -18,6 +18,7 @@ export default function EventForm() {
       }
       const data = await response.json();
       console.log("Event created: ", data);
+      event.target.reset();
     } catch (error) {
       console.error(error);
     }
