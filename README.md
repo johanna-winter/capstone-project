@@ -1,8 +1,8 @@
 # Memory Wall
 
-Memory Wall is a web application for collecting and displaying shared memories at events. It allows an event organizer to create an event and invite guests to upload photos and optional messages via a shared link — without requiring accounts or logins.
+Memory Wall is a web application for collecting and displaying shared memories at events. It allows an event organizer to create an event and invite guests to upload photos and optional messages via a shared link/QR Code.
 
-The project was built as a capstone project and focuses on a clearly scoped MVP that demonstrates full-stack development, API integration, database usage, and deployment.
+This project is currently built as a capstone project and focuses on a clearly scoped MVP that demonstrates full-stack development, API integration, database usage, and deployment.
 
 ---
 
@@ -27,7 +27,7 @@ The memory wall can update automatically to reflect new submissions without requ
 
 ### Guest
 
-- Accesses the event via a shared link
+- Accesses the event via a shared link and/or QR code
 - Uploads photos and optional messages
 - No account or login required
 
