@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { StyledEventForm } from "./StyledEventForm";
 import useSWR from "swr";
+import { useRouter } from "next/router";
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
