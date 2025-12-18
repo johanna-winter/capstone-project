@@ -1,7 +1,13 @@
 import { useEffect, useState } from "react";
-import { StyledEventForm } from "./StyledEventForm";
 import useSWR from "swr";
 import { useRouter } from "next/router";
+import {
+  StyledEventForm,
+  StyledFormLabel,
+  StyledFormInput,
+  StyledCreateButton,
+  StatusMessage,
+} from "./StyledEventForm";
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
@@ -67,8 +73,8 @@ export default function EventForm() {
     <>
       <StyledEventForm onSubmit={handleSubmit}>
         <h2>Add your event</h2>
-        <label htmlFor="event-title">Title:</label>
-        <input
+        <StyledFormLabel htmlFor="event-title">Title:</StyledFormLabel>
+        <StyledFormInput
           id="event-title"
           type="text"
           name="title"
@@ -76,20 +82,29 @@ export default function EventForm() {
           placeholder="Name your event"
           required
         />
-        <label htmlFor="event-description">Description:</label>
-        <input
+        <StyledFormLabel htmlFor="event-description">
+          Description:
+        </StyledFormLabel>
+        <StyledFormInput
           id="event-description"
           type="text"
           name="description"
           maxLength="300"
           placeholder="Describe your event"
         />
-        <label htmlFor="event-date">Date:</label>
-        <input id="event-date" type="date" name="date" min={getMinDate()} />
-        <button type="submit">Create event</button>
+        <StyledFormLabel htmlFor="event-date">Date:</StyledFormLabel>
+        <StyledFormInput
+          id="event-date"
+          type="date"
+          name="date"
+          min={getMinDate()}
+        />
+        <StyledCreateButton type="submit">Create event</StyledCreateButton>
       </StyledEventForm>
-      {successMessage && <p>{successMessage}</p>}
-      {errorMessage && <p>{errorMessage}</p>}
+      {successMessage && (
+        <StatusMessage $success>{successMessage}</StatusMessage>
+      )}
+      {errorMessage && <StatusMessage>{errorMessage}</StatusMessage>}
     </>
   );
 }
