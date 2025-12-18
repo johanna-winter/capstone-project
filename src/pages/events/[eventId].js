@@ -7,6 +7,7 @@ const fetcher = (url) => fetch(url).then((res) => res.json());
 export default function EventDetailPage() {
   const { query } = useRouter();
   const { eventId } = query;
+  const guestUploadLink = `/events/${eventId}/upload`;
 
   const {
     data: event,
@@ -25,6 +26,7 @@ export default function EventDetailPage() {
       <p>{event.description}</p>
       <p>{event.date}</p>
       <p>Share this link with your guests:</p>
+      <Link href={guestUploadLink}>{guestUploadLink}</Link>
       <button>Copy Link</button>
       <h3>Event Photo Gallery</h3>
       <p>No photos added yet.</p>
