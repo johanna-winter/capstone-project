@@ -1,6 +1,32 @@
+import { useEffect, useState } from "react";
 import { StyledEventForm } from "./StyledEventForm";
+import useSWR from "swr";
+
+const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
 export default function EventForm() {
+  const [successMessage, setSuccessMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+  const { mutate } = useSWR("/api/events", fetcher);
+
+  useEffect(() => {
+    if (successMessage) {
+      const timer = setTimeout(() => {
+        setSuccessMessage("");
+      }, 5000);
+      return () => clearTimeout(timer);
+    }
+  }, [successMessage]);
+
+  useEffect(() => {
+    if (errorMessage) {
+      const timer = setTimeout(() => {
+        setErrorMessage("");
+      }, 5000);
+      return () => clearTimeout(timer);
+    }
+  }, [errorMessage]);
+
   async function handleSubmit(event) {
     event.preventDefault();
     const formData = new FormData(event.target);
@@ -18,9 +44,14 @@ export default function EventForm() {
       }
       const data = await response.json();
       console.log("Event created: ", data);
+      setSuccessMessage("Your event was successfully created!");
+      setErrorMessage("");
+      mutate();
       event.target.reset();
     } catch (error) {
-      console.error(error);
+      setErrorMessage("Something went wrong. Please try again.");
+      setSuccessMessage("");
+      console.error("Failed to create event");
     }
   }
 
@@ -54,6 +85,8 @@ export default function EventForm() {
         <input id="event-date" type="date" name="date" min={getMinDate()} />
         <button type="submit">Create event</button>
       </StyledEventForm>
+      {successMessage && <p>{successMessage}</p>}
+      {errorMessage && <p>{errorMessage}</p>}
     </>
   );
 }

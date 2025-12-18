@@ -7,6 +7,10 @@ export default async function handler(request, response) {
   if (request.method === "POST") {
     try {
       const eventData = request.body;
+      if (!eventData.title || eventData.title.trim() === "") {
+        return response.status(400).json({ error: "Event title is required" });
+      }
+      eventData.title = eventData.title.trim();
       await Event.create(eventData);
       return response
         .status(201)
