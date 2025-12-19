@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import useSWR from "swr";
-import { useRouter } from "next/router";
 import {
   StyledEventForm,
   StyledFormLabel,
@@ -15,7 +14,6 @@ export default function EventForm() {
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const { mutate } = useSWR("/api/events", fetcher);
-  const router = useRouter();
 
   useEffect(() => {
     if (successMessage) {
@@ -56,7 +54,6 @@ export default function EventForm() {
       setErrorMessage("");
       mutate();
       event.target.reset();
-      router.push(`/events/${data.id}`);
     } catch (error) {
       setErrorMessage("Something went wrong. Please try again.");
       setSuccessMessage("");
