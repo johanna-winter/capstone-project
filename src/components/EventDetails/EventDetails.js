@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import {
   DetailsWrapper,
   EventCard,
@@ -8,9 +9,21 @@ import {
 } from "./StyledEventDetails";
 
 export default function EventDetails({ event, link }) {
-  function handleCopyLink() {
-    navigator.clipboard.writeText();
+  const [copiedLink, setCopiedLink] = useState(false);
+
+  async function handleCopyLink() {
+    const fullLink = `${window.location.origin}${link}`;
+    await navigator.clipboard.writeText(fullLink);
+    setCopiedLink(true);
   }
+  useEffect(() => {
+    if (!copiedLink) return;
+    const timeout = setTimeout(() => setCopiedLink(false), 3000);
+    return () => {
+      clearTimeout(timeout);
+    };
+  }, [copiedLink]);
+
   return (
     <>
       <DetailsWrapper>
@@ -22,7 +35,9 @@ export default function EventDetails({ event, link }) {
           <ShareSection>
             <EventLinkText>Share this link with your guests:</EventLinkText>
             <UploadLink href={link}>{event.title} Event</UploadLink>
-            <CopyLinkButton onClick={handleCopyLink}>Copy Link</CopyLinkButton>
+            <CopyLinkButton onClick={handleCopyLink}>
+              {copiedLink ? "Successfully copied!" : "Copy Link"}
+            </CopyLinkButton>
           </ShareSection>
         </EventCard>
         <h3>Event Photo Gallery</h3>
