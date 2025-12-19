@@ -1,4 +1,4 @@
-import Link from "next/link";
+import EventDetails from "@/components/EventDetails/EventDetails";
 import { useRouter } from "next/router";
 import useSWR from "swr";
 
@@ -20,16 +20,7 @@ export default function EventDetailPage() {
 
   return (
     <>
-      <Link href="/">Back</Link>
-      <h2>Event Overview</h2>
-      <h3>{event.title}</h3>
-      <p>{event.description}</p>
-      <p>{event.date}</p>
-      <p>Share this link with your guests:</p>
-      <Link href={guestUploadLink}>{guestUploadLink}</Link>
-      <button>Copy Link</button>
-      <h3>Event Photo Gallery</h3>
-      <p>No photos added yet.</p>
+      <EventDetails event={event} link={guestUploadLink} />
     </>
   );
 }
