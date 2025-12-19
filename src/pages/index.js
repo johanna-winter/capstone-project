@@ -1,10 +1,17 @@
+import EventForm from "@/components/EventForm/EventForm";
+import EventList from "@/components/EventList/EventList";
+import styled from "styled-components";
+
 export default function HomePage() {
   return (
-    <>
-      <main>
-        <h1>Memory Wall</h1>
-        <p>Capstone Project - Work in progress</p>
-      </main>
-    </>
+    <StyledMain>
+      <h1>Memory Wall</h1>
+      <EventForm />
+      <EventList />
+    </StyledMain>
   );
 }
+
+const StyledMain = styled.main`
+  padding: 1rem;
+`;
