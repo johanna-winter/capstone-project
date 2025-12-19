@@ -1,4 +1,5 @@
 import EventForm from "@/components/EventForm/EventForm";
+import EventList from "@/components/EventList/EventList";
 import styled from "styled-components";
 
 export default function HomePage() {
@@ -6,6 +7,7 @@ export default function HomePage() {
     <StyledMain>
       <h1>Memory Wall</h1>
       <EventForm />
+      <EventList />
     </StyledMain>
   );
 }
