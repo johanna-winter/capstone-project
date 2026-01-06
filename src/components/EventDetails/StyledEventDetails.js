@@ -35,7 +35,7 @@ export const UploadLink = styled(Link)`
   }
 `;
 
-export const CopyLinkButton = styled.button`
+export const StyledButton = styled.button`
   align-self: center;
   padding: 0.5rem 1.5rem;
   border-radius: 6px;

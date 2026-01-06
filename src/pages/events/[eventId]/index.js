@@ -1,12 +1,15 @@
 import EventDetails from "@/components/EventDetails/EventDetails";
+import EventForm from "@/components/EventForm/EventForm";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { useState } from "react";
 import styled from "styled-components";
 import useSWR from "swr";
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
 export default function EventDetailPage() {
+  const [isEditing, setIsEditing] = useState(false);
   const { query } = useRouter();
   const { eventId } = query;
   const guestUploadLink = `/events/${eventId}/upload`;
@@ -15,16 +18,44 @@ export default function EventDetailPage() {
     data: event,
     error,
     isLoading,
+    mutate,
   } = useSWR(eventId ? `/api/events/${eventId}` : null, fetcher);
 
   if (error) return <p>Failed to load event</p>;
   if (isLoading || !event) return <p>Loading event data...</p>;
 
+  async function handleUpdateEvent(updatedEvent) {
+    const response = await fetch(`/api/events/${event._id}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(updatedEvent),
+    });
+    if (response.ok) {
+      mutate();
+      setIsEditing(false);
+      return true;
+    }
+    return false;
+  }
+
   return (
-    <>
+    <main>
       <BackButton href="/">Back</BackButton>
-      <EventDetails event={event} link={guestUploadLink} />
-    </>
+      {!isEditing && (
+        <EventDetails
+          event={event}
+          link={guestUploadLink}
+          onEdit={() => setIsEditing(true)}
+        />
+      )}
+      {isEditing && (
+        <EventForm
+          event={event}
+          onSubmit={handleUpdateEvent}
+          onCancel={() => setIsEditing(false)}
+        />
+      )}
+    </main>
   );
 }
 

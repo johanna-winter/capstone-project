@@ -6,9 +6,10 @@ import {
   ShareSection,
   UploadLink,
   CopyLinkButton,
+  StyledButton,
 } from "./StyledEventDetails";
 
-export default function EventDetails({ event, link }) {
+export default function EventDetails({ event, link, onEdit }) {
   const [copiedLink, setCopiedLink] = useState(false);
 
   async function handleCopyLink() {
@@ -28,6 +29,7 @@ export default function EventDetails({ event, link }) {
     <>
       <DetailsWrapper>
         <EventCard>
+          <StyledButton onClick={onEdit}>Edit</StyledButton>
           <h2>Event Details</h2>
           <h3>{event.title}</h3>
           {event.description && <p>{event.description}</p>}
@@ -35,9 +37,9 @@ export default function EventDetails({ event, link }) {
           <ShareSection>
             <EventLinkText>Share this link with your guests:</EventLinkText>
             <UploadLink href={link}>{event.title} Event</UploadLink>
-            <CopyLinkButton onClick={handleCopyLink}>
+            <StyledButton onClick={handleCopyLink}>
               {copiedLink ? "Successfully copied!" : "Copy Link"}
-            </CopyLinkButton>
+            </StyledButton>
           </ShareSection>
         </EventCard>
         <h3>Event Photo Gallery</h3>
