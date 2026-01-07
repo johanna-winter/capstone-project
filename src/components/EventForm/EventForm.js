@@ -1,16 +1,13 @@
 import { useEffect, useState } from "react";
-import useSWR from "swr";
 import {
   StyledEventForm,
   StyledFormLabel,
   StyledFormInput,
-  StyledCreateButton,
+  CreateButton,
   StatusMessage,
 } from "./StyledEventForm";
 
-const fetcher = (...args) => fetch(...args).then((res) => res.json());
-
-export default function EventForm({ event, onSubmit, onCancel }) {
+export default function EventForm({ event, onSubmit }) {
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const isEditMode = Boolean(event?._id);
@@ -79,7 +76,7 @@ export default function EventForm({ event, onSubmit, onCancel }) {
           id="event-title"
           type="text"
           name="title"
-          defaultValue={event?.title}
+          defaultValue={event?.title || ""}
           maxLength="50"
           placeholder="Name your event"
           required
@@ -103,17 +100,9 @@ export default function EventForm({ event, onSubmit, onCancel }) {
           defaultValue={defaultDate}
           min={!isEditMode ? getMinDate() : undefined}
         />
-        {!isEditMode && (
-          <StyledCreateButton type="submit">Create event</StyledCreateButton>
-        )}
-        {isEditMode && (
-          <>
-            <StyledCreateButton type="submit">Save event</StyledCreateButton>
-            <StyledCreateButton type="button" onClick={onCancel}>
-              Cancel
-            </StyledCreateButton>
-          </>
-        )}
+        <CreateButton type="submit">
+          {isEditMode ? "Save changes" : "Create event"}
+        </CreateButton>
       </StyledEventForm>
       {successMessage && (
         <StatusMessage $success>{successMessage}</StatusMessage>

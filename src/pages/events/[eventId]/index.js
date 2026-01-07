@@ -1,5 +1,4 @@
 import EventDetails from "@/components/EventDetails/EventDetails";
-import EventForm from "@/components/EventForm/EventForm";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState } from "react";
@@ -39,23 +38,17 @@ export default function EventDetailPage() {
   }
 
   return (
-    <main>
+    <>
       <BackButton href="/">Back</BackButton>
-      {!isEditing && (
-        <EventDetails
-          event={event}
-          link={guestUploadLink}
-          onEdit={() => setIsEditing(true)}
-        />
-      )}
-      {isEditing && (
-        <EventForm
-          event={event}
-          onSubmit={handleUpdateEvent}
-          onCancel={() => setIsEditing(false)}
-        />
-      )}
-    </main>
+      <EventDetails
+        event={event}
+        link={guestUploadLink}
+        isEditing={isEditing}
+        onEdit={() => setIsEditing(true)}
+        onCancel={() => setIsEditing(false)}
+        onSubmit={handleUpdateEvent}
+      />
+    </>
   );
 }
 

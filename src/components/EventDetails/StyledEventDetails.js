@@ -6,6 +6,7 @@ export const DetailsWrapper = styled.main`
 `;
 
 export const EventCard = styled.section`
+  position: relative;
   background-color: papayawhip;
   padding: 1.8rem;
   border-radius: 12px;
@@ -35,7 +36,32 @@ export const UploadLink = styled(Link)`
   }
 `;
 
-export const StyledButton = styled.button`
+export const ButtonWrapper = styled.section`
+  display: flex;
+  justify-content: flex-start;
+  gap: 0.5rem;
+  margin: 2rem 0;
+`;
+
+export const EditButton = styled.button`
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  padding: 0.5rem 1.75rem;
+  cursor: pointer;
+  align-self: flex-end;
+  background: #000;
+  border: 1px solid #000;
+  border-radius: 6px;
+  font-weight: bold;
+  color: #fff;
+
+  &:hover {
+    background: #333;
+  }
+`;
+
+export const CopyLinkButton = styled.button`
   align-self: center;
   padding: 0.5rem 1.5rem;
   border-radius: 6px;
