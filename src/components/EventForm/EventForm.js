@@ -107,7 +107,12 @@ export default function EventForm({ event, onSubmit, onCancel }) {
           <StyledCreateButton type="submit">Create event</StyledCreateButton>
         )}
         {isEditMode && (
-          <StyledCreateButton type="submit">Save event</StyledCreateButton>
+          <>
+            <StyledCreateButton type="submit">Save event</StyledCreateButton>
+            <StyledCreateButton type="button" onClick={onCancel}>
+              Cancel
+            </StyledCreateButton>
+          </>
         )}
       </StyledEventForm>
       {successMessage && (
