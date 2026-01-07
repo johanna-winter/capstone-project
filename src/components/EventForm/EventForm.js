@@ -55,12 +55,12 @@ export default function EventForm({ event, onSubmit, onCancel }) {
 
       setErrorMessage("");
       setSuccessMessage(
-        event?._id
+        isEditMode
           ? "Your event has been successfully updated!"
           : "Your event was successfully created!"
       );
       if (!event?._id) {
-        event.target.reset();
+        submitEvent.target.reset();
       }
     } catch (error) {
       setSuccessMessage("");
@@ -103,7 +103,12 @@ export default function EventForm({ event, onSubmit, onCancel }) {
           defaultValue={defaultDate}
           min={!isEditMode ? getMinDate() : undefined}
         />
-        <StyledCreateButton type="submit">Create event</StyledCreateButton>
+        {!isEditMode && (
+          <StyledCreateButton type="submit">Create event</StyledCreateButton>
+        )}
+        {isEditMode && (
+          <StyledCreateButton type="submit">Save event</StyledCreateButton>
+        )}
       </StyledEventForm>
       {successMessage && (
         <StatusMessage $success>{successMessage}</StatusMessage>

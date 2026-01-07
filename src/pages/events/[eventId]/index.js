@@ -25,7 +25,7 @@ export default function EventDetailPage() {
   if (isLoading || !event) return <p>Loading event data...</p>;
 
   async function handleUpdateEvent(updatedEvent) {
-    const response = await fetch(`/api/events/${event._id}`, {
+    const response = await fetch(`/api/events/${eventId}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(updatedEvent),
