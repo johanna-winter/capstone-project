@@ -11,6 +11,9 @@ import {
 
 export default function EventDetails({ event, link, onEdit }) {
   const [copiedLink, setCopiedLink] = useState(false);
+  const displayDate = event.date
+    ? new Date(event.date).toLocaleDateString("en-GB")
+    : "";
 
   async function handleCopyLink() {
     const fullLink = `${window.location.origin}${link}`;
@@ -33,7 +36,7 @@ export default function EventDetails({ event, link, onEdit }) {
           <h2>Event Details</h2>
           <h3>{event.title}</h3>
           {event.description && <p>{event.description}</p>}
-          {event.date && <p>{event.date}</p>}
+          {event.date && <p>When? {displayDate}</p>}
           <ShareSection>
             <EventLinkText>Share this link with your guests:</EventLinkText>
             <UploadLink href={link}>{event.title} Event</UploadLink>
