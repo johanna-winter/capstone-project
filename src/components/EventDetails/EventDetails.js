@@ -53,7 +53,11 @@ export default function EventDetails({
               <h2>Event Details</h2>
               <h3>{event.title}</h3>
               {event.description && <p>{event.description}</p>}
-              {event.date && <p>When? {displayDate}</p>}
+              {event.date && (
+                <p>
+                  <strong>When?</strong> {displayDate}
+                </p>
+              )}
               <ShareSection>
                 <EventLinkText>Share this link with your guests:</EventLinkText>
                 <UploadLink href={link}>{event.title} Event</UploadLink>
