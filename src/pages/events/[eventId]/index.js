@@ -56,6 +56,7 @@ export default function EventDetailPage() {
         onEdit={() => setIsEditing(true)}
         onCancel={() => setIsEditing(false)}
         onSubmit={handleUpdateEvent}
+        onDelete={handleDelete}
       />
     </>
   );
