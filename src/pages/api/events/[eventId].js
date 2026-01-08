@@ -43,5 +43,11 @@ export default async function handler(request, response) {
       });
     }
   }
+  if (request.method === "DELETE") {
+    await Event.findByIdAndDelete(eventId);
+    response
+      .status(200)
+      .json({ status: `Event with ${eventId} successfully deleted.` });
+  }
   return response.status(405).json({ error: "Method not allowed" });
 }
