@@ -52,7 +52,7 @@ export default async function handler(request, response) {
       }
       return response
         .status(200)
-        .json({ status: `Event with ${eventId} successfully deleted.` });
+        .json({ status: `Event with ID ${eventId} was successfully deleted.` });
     } catch (error) {
       console.error("DELETE /api/events/[eventId] error:", error);
       return response

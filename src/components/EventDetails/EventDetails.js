@@ -7,8 +7,8 @@ import {
   ShareSection,
   UploadLink,
   CopyLinkButton,
-  ButtonWrapper,
   EditButton,
+  DeleteButton,
 } from "./StyledEventDetails";
 
 export default function EventDetails({
@@ -18,6 +18,7 @@ export default function EventDetails({
   onEdit,
   onCancel,
   onSubmit,
+  onDelete,
 }) {
   const [copiedLink, setCopiedLink] = useState(false);
   const displayDate = event.date
@@ -41,13 +42,19 @@ export default function EventDetails({
     <>
       <DetailsWrapper>
         <EventCard>
-          <ButtonWrapper>
+          <section>
             {!isEditing ? (
-              <EditButton onClick={onEdit}>Edit</EditButton>
+              <>
+                <EditButton onClick={onEdit}>Edit</EditButton>
+                <DeleteButton onClick={onDelete}>Delete</DeleteButton>
+              </>
             ) : (
-              <EditButton onClick={onCancel}>Cancel</EditButton>
+              <>
+                <EditButton onClick={onCancel}>Cancel</EditButton>
+                <DeleteButton onClick={onDelete}>Delete</DeleteButton>
+              </>
             )}
-          </ButtonWrapper>
+          </section>
           {!isEditing ? (
             <>
               <h2>Event Details</h2>

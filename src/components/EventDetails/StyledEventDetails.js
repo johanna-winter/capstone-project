@@ -36,20 +36,12 @@ export const UploadLink = styled(Link)`
   }
 `;
 
-export const ButtonWrapper = styled.section`
-  display: flex;
-  justify-content: flex-start;
-  gap: 0.5rem;
-  margin: 2rem 0;
-`;
-
 export const EditButton = styled.button`
   position: absolute;
   top: 1rem;
-  right: 1rem;
-  padding: 0.5rem 1.75rem;
+  right: 7rem;
+  padding: 0.5rem 1.5rem;
   cursor: pointer;
-  align-self: flex-end;
   background: #000;
   border: 1px solid #000;
   border-radius: 6px;
@@ -58,6 +50,18 @@ export const EditButton = styled.button`
 
   &:hover {
     background: #333;
+  }
+`;
+
+export const DeleteButton = styled(EditButton)`
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: #d9534f;
+  border: 1px solid #d9534f;
+
+  &:hover {
+    background: #c64541;
   }
 `;
 
