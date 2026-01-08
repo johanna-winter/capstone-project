@@ -37,6 +37,15 @@ export default function EventDetailPage() {
     return false;
   }
 
+  async function handleDelete() {
+    const response = await fetch(`/api/events/${eventId}`, {
+      method: "DELETE",
+    });
+    if (response.ok) {
+      router.push("/");
+    }
+  }
+
   return (
     <>
       <BackButton href="/">Back</BackButton>
