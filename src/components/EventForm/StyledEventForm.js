@@ -17,7 +17,7 @@ export const StyledFormInput = styled.input`
   background-color: #fff;
 `;
 
-export const StyledCreateButton = styled.button`
+export const CreateButton = styled.button`
   padding: 0.5rem 1.75rem;
   display: block;
   margin: 0 auto;
