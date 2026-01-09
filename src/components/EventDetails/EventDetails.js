@@ -9,6 +9,7 @@ import {
   CopyLinkButton,
   EditButton,
   DeleteButton,
+  DeleteStatusMessage,
 } from "./StyledEventDetails";
 
 export default function EventDetails({
@@ -19,8 +20,10 @@ export default function EventDetails({
   onCancel,
   onSubmit,
   onDelete,
+  deleteError,
 }) {
   const [copiedLink, setCopiedLink] = useState(false);
+  const [showConfirmDelete, setShowConfirmDelete] = useState(false);
   const displayDate = event.date
     ? new Date(event.date).toLocaleDateString("en-GB")
     : "";
@@ -43,15 +46,44 @@ export default function EventDetails({
       <DetailsWrapper>
         <EventCard>
           <section>
-            {!isEditing ? (
+            {deleteError && (
+              <DeleteStatusMessage>{deleteError}</DeleteStatusMessage>
+            )}
+            {!showConfirmDelete ? (
               <>
-                <EditButton onClick={onEdit}>Edit</EditButton>
-                <DeleteButton onClick={onDelete}>Delete</DeleteButton>
+                <EditButton onClick={isEditing ? onCancel : onEdit}>
+                  {isEditing ? "Cancel" : "Edit"}
+                </EditButton>
+
+                <DeleteButton
+                  type="button"
+                  onClick={() => setShowConfirmDelete(true)}
+                >
+                  Delete
+                </DeleteButton>
               </>
             ) : (
               <>
-                <EditButton onClick={onCancel}>Cancel</EditButton>
-                <DeleteButton onClick={onDelete}>Delete</DeleteButton>
+                <DeleteStatusMessage>
+                  Are you sure you want to delete this event?
+                </DeleteStatusMessage>
+
+                <DeleteButton
+                  type="button"
+                  onClick={() => {
+                    onDelete();
+                    setShowConfirmDelete(false);
+                  }}
+                >
+                  Delete
+                </DeleteButton>
+
+                <EditButton
+                  type="button"
+                  onClick={() => setShowConfirmDelete(false)}
+                >
+                  Cancel
+                </EditButton>
               </>
             )}
           </section>

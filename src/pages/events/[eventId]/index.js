@@ -1,7 +1,7 @@
 import EventDetails from "@/components/EventDetails/EventDetails";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import useSWR from "swr";
 
@@ -9,8 +9,9 @@ const fetcher = (url) => fetch(url).then((res) => res.json());
 
 export default function EventDetailPage() {
   const [isEditing, setIsEditing] = useState(false);
-  const { query } = useRouter();
-  const { eventId } = query;
+  const [deleteError, setDeleteError] = useState("");
+  const router = useRouter();
+  const { eventId } = router.query;
   const guestUploadLink = `/events/${eventId}/upload`;
 
   const {
@@ -19,6 +20,15 @@ export default function EventDetailPage() {
     isLoading,
     mutate,
   } = useSWR(eventId ? `/api/events/${eventId}` : null, fetcher);
+
+  useEffect(() => {
+    if (deleteError) {
+      const timer = setTimeout(() => {
+        setDeleteError("");
+      }, 5000);
+      return () => clearTimeout(timer);
+    }
+  }, [deleteError]);
 
   if (error) return <p>Failed to load event</p>;
   if (isLoading || !event) return <p>Loading event data...</p>;
@@ -38,11 +48,18 @@ export default function EventDetailPage() {
   }
 
   async function handleDelete() {
-    const response = await fetch(`/api/events/${eventId}`, {
-      method: "DELETE",
-    });
-    if (response.ok) {
+    setDeleteError("");
+    try {
+      const response = await fetch(`/api/events/6960dc3b9edcc1cfe6d9b1`, {
+        method: "DELETE",
+      });
+      if (!response.ok) {
+        setDeleteError("The event could not be deleted. Please try again.");
+        return;
+      }
       router.push("/");
+    } catch (error) {
+      setDeleteError("The event could not be deleted. Please try again.");
     }
   }
 
@@ -57,6 +74,7 @@ export default function EventDetailPage() {
         onCancel={() => setIsEditing(false)}
         onSubmit={handleUpdateEvent}
         onDelete={handleDelete}
+        deleteError={deleteError}
       />
     </>
   );
