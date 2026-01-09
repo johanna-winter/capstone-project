@@ -8,7 +8,7 @@ export const DetailsWrapper = styled.main`
 export const EventCard = styled.section`
   position: relative;
   background-color: papayawhip;
-  padding: 1.8rem;
+  padding: 2.5rem 1.8rem 1.8rem;
   border-radius: 12px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
   text-align: center;
@@ -36,20 +36,12 @@ export const UploadLink = styled(Link)`
   }
 `;
 
-export const ButtonWrapper = styled.section`
-  display: flex;
-  justify-content: flex-start;
-  gap: 0.5rem;
-  margin: 2rem 0;
-`;
-
 export const EditButton = styled.button`
   position: absolute;
   top: 1rem;
-  right: 1rem;
-  padding: 0.5rem 1.75rem;
+  right: 7rem;
+  padding: 0.5rem 1.5rem;
   cursor: pointer;
-  align-self: flex-end;
   background: #000;
   border: 1px solid #000;
   border-radius: 6px;
@@ -59,6 +51,29 @@ export const EditButton = styled.button`
   &:hover {
     background: #333;
   }
+`;
+
+export const DeleteButton = styled(EditButton)`
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: #d9534f;
+  border: 1px solid #d9534f;
+
+  &:hover {
+    background: #c64541;
+  }
+`;
+
+export const DeleteStatusMessage = styled.p`
+  margin: 2rem 0;
+  padding: 0.75rem 1rem;
+  background-color: #fff3f3;
+  border: 1px solid #c64541;
+  border-radius: 6px;
+  color: #b00020;
+  font-weight: 500;
+  text-align: center;
 `;
 
 export const CopyLinkButton = styled.button`
