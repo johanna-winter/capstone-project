@@ -49,8 +49,12 @@ export default function EventDetailPage() {
 
   async function handleDelete() {
     setDeleteError("");
+    console.log("router.asPath:", router.asPath);
+    console.log("router.query.eventId:", eventId, eventId?.length);
+    console.log("event._id:", event?._id, String(event?._id)?.length);
+
     try {
-      const response = await fetch(`/api/events/6960dc3b9edcc1cfe6d9b1`, {
+      const response = await fetch(`/api/events/${eventId}`, {
         method: "DELETE",
       });
       if (!response.ok) {
