@@ -1,5 +1,6 @@
 import useSWR from "swr";
-import { StyledLink } from "./StyledEventList";
+import { EventCard } from "../EventCard/EventCard";
+import { EventListGrid } from "./StyledEventList";
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
@@ -13,12 +14,10 @@ export default function EventList() {
   const sortedEvents = [...events].sort((a, b) => b._id.localeCompare(a._id));
 
   return (
-    <ul>
+    <EventListGrid>
       {sortedEvents.map((event) => (
-        <li key={event._id}>
-          <StyledLink href={`/events/${event._id}`}>{event.title}</StyledLink>
-        </li>
+        <EventCard key={event._id} event={event}></EventCard>
       ))}
-    </ul>
+    </EventListGrid>
   );
 }
