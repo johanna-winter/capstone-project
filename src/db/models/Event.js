@@ -4,6 +4,7 @@ const { Schema } = mongoose;
 
 const eventSchema = new Schema({
   title: { type: String, required: true, minlength: 3 },
+  imageUrl: { type: String, default: "/img/default-photo-red.png" },
   description: { type: String },
   date: { type: Date },
 });
