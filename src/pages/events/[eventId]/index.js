@@ -50,7 +50,7 @@ export default function EventDetailPage() {
   async function handleDelete() {
     setDeleteError("");
     try {
-      const response = await fetch(`/api/events/6960dc3b9edcc1cfe6d9b1`, {
+      const response = await fetch(`/api/events/${eventId}`, {
         method: "DELETE",
       });
       if (!response.ok) {
