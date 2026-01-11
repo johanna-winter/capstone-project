@@ -1,8 +1,27 @@
-export default function GuestUploadForm() {
-  async function handleUpload() {}
+export default function GuestUploadForm({ eventId }) {
+  async function handleUpload(uploadEvent) {
+    uploadEvent.preventDefault();
+    if (!eventId) {
+      console.error("Missing eventId");
+      return;
+    }
+    const formData = new FormData(uploadEvent.target);
+    try {
+      const response = await fetch(`/api/events/${eventId}/uploads`, {
+        method: "POST",
+        body: formData,
+      });
+      if (!response.ok) {
+        throw new Error("Photo upload failed");
+      }
+      console.log("Upload request sent successfully");
+    } catch (error) {
+      console.error(error);
+    }
+  }
   return (
     <>
-      <form>
+      <form onSubmit={handleUpload}>
         <label htmlFor="guest-name">
           Name:
           <input

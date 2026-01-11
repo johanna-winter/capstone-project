@@ -1,10 +1,14 @@
 import GuestUploadForm from "@/components/GuestUploadForm/GuestUploadForm";
+import { useRouter } from "next/router";
 
 export default function GuestUploadPage() {
+  const router = useRouter();
+  const { eventId } = router.query;
   return (
     <>
       <h2>Guest Upload Page</h2>
-      <GuestUploadForm />
+      {eventId ? <GuestUploadForm eventId={eventId} /> : null}
+      <p>You can upload up to 5 images.</p>
       <footer>Powered by Memory Wall</footer>
     </>
   );
