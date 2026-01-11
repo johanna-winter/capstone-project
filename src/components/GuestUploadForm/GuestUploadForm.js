@@ -7,7 +7,7 @@ export default function GuestUploadForm({ eventId }) {
     }
     const formData = new FormData(uploadEvent.target);
     try {
-      const response = await fetch(`/api/events/${eventId}/uploads`, {
+      const response = await fetch(`/api/events/${eventId}/upload`, {
         method: "POST",
         body: formData,
       });
@@ -22,6 +22,18 @@ export default function GuestUploadForm({ eventId }) {
   return (
     <>
       <form onSubmit={handleUpload}>
+        <label htmlFor="guest-images">
+          {" "}
+          Photo Upload:
+          <input
+            id="guest-images"
+            type="file"
+            name="images"
+            accept="image/*"
+            multiple
+            required
+          />
+        </label>
         <label htmlFor="guest-name">
           Name:
           <input
@@ -42,11 +54,6 @@ export default function GuestUploadForm({ eventId }) {
             maxLength="30"
             placeholder="Enter photo caption"
           />
-        </label>
-        <label htmlFor="guest-upload">
-          {" "}
-          Photo Upload:
-          <input id="guest-upload" type="file" name="upload" required />
         </label>
         <button type="submit"> Upload Photo</button>
       </form>
