@@ -1,5 +1,7 @@
 import formidable from "formidable";
 import { v2 as cloudinary } from "cloudinary";
+import dbConnect from "@/db/connect";
+import Event from "@/db/models/Event";
 
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -15,8 +17,7 @@ export const config = {
 
 export default async function handler(request, response) {
   if (request.method !== "POST") {
-    response.status(405).json({ message: "Method not allowed" });
-    return;
+    return response.status(405).json({ message: "Method not allowed" });
   }
   try {
     const form = formidable({});
@@ -34,6 +35,8 @@ export default async function handler(request, response) {
         .status(400)
         .json({ message: "Maximum of 5 photos allowed" });
     }
+    const guestName = fields.name?.[0] ?? "";
+    const caption = fields.caption?.[0] ?? "";
 
     const folder = `memory-wall/events/${request.query.eventId}`;
     const results = [];
@@ -43,17 +46,32 @@ export default async function handler(request, response) {
         folder,
       });
       results.push({
-        public_id: result.public_id,
-        secure_url: result.secure_url,
-        bytes: result.bytes,
-        format: result.format,
-        width: result.width,
-        height: result.height,
+        imagePublicId: result.public_id,
+        imageUrl: result.secure_url,
       });
     }
-    return response
-      .status(200)
-      .json({ ok: true, uploaded: results.length, images: results });
+    await dbConnect();
+
+    const uploadedPhotos = results.map((img) => ({
+      imageUrl: img.imageUrl,
+      imagePublicId: img.imagePublicId,
+      name: guestName,
+      caption,
+      createdAt: new Date(),
+    }));
+
+    const event = await Event.findById(request.query.eventId);
+    if (!event) {
+      return response.status(404).json({ message: "Event not found" });
+    }
+    event.uploads.push(...uploadedPhotos);
+    await event.save();
+
+    return response.status(200).json({
+      ok: true,
+      uploaded: uploadedPhotos.length,
+      uploads: uploadedPhotos,
+    });
   } catch (error) {
     console.error(error);
     return response
