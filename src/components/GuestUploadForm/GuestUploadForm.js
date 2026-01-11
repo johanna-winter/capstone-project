@@ -1,11 +1,38 @@
+import { useEffect, useState } from "react";
+import {
+  StyledEventForm,
+  StyledFormLabel,
+  StyledFormInput,
+  CreateButton,
+  StatusMessage,
+} from "@/components/EventForm/StyledEventForm";
+
 export default function GuestUploadForm({ eventId }) {
-  async function handleUpload(uploadEvent) {
-    uploadEvent.preventDefault();
+  const [successMessage, setSuccessMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+
+  useEffect(() => {
+    if (!successMessage && !errorMessage) return;
+
+    const timer = setTimeout(() => {
+      setSuccessMessage("");
+      setErrorMessage("");
+    }, 5000);
+
+    return () => clearTimeout(timer);
+  }, [successMessage, errorMessage]);
+
+  async function handleUpload(event) {
+    event.preventDefault();
+    setSuccessMessage("");
+    setErrorMessage("");
+
     if (!eventId) {
       console.error("Missing eventId");
+      setErrorMessage("Something went wrong. Please try again.");
       return;
     }
-    const formData = new FormData(uploadEvent.target);
+    const formData = new FormData(event.target);
     try {
       const response = await fetch(`/api/events/${eventId}/upload`, {
         method: "POST",
@@ -14,18 +41,27 @@ export default function GuestUploadForm({ eventId }) {
       if (!response.ok) {
         throw new Error("Photo upload failed");
       }
+
+      const data = await response.json();
       console.log("Upload request sent successfully");
+      setSuccessMessage(
+        `Thanks! ${data.uploaded} photo${
+          data.uploaded > 1 ? "s" : ""
+        } uploaded successfully!`
+      );
+      event.target.reset();
     } catch (error) {
       console.error(error);
+      setErrorMessage("Something went wrong. Please try again.");
     }
   }
   return (
     <>
-      <form onSubmit={handleUpload}>
-        <label htmlFor="guest-images">
+      <StyledEventForm onSubmit={handleUpload}>
+        <StyledFormLabel htmlFor="guest-images">
           {" "}
           Photo Upload:
-          <input
+          <StyledFormInput
             id="guest-images"
             type="file"
             name="images"
@@ -33,30 +69,34 @@ export default function GuestUploadForm({ eventId }) {
             multiple
             required
           />
-        </label>
-        <label htmlFor="guest-name">
+        </StyledFormLabel>
+        <StyledFormLabel htmlFor="guest-name">
           Name:
-          <input
+          <StyledFormInput
             id="guest-name"
             type="text"
             name="name"
             maxLength="30"
             placeholder="Enter your name"
           />
-        </label>
-        <label htmlFor="guest-caption">
+        </StyledFormLabel>
+        <StyledFormLabel htmlFor="guest-caption">
           {" "}
           Photo Caption:
-          <input
+          <StyledFormInput
             id="guest-caption"
             type="text"
             name="caption"
             maxLength="30"
             placeholder="Enter photo caption"
           />
-        </label>
-        <button type="submit"> Upload Photo</button>
-      </form>
+        </StyledFormLabel>
+        <CreateButton type="submit"> Upload Photo</CreateButton>
+      </StyledEventForm>
+      {errorMessage && <StatusMessage>{errorMessage}</StatusMessage>}
+      {successMessage && (
+        <StatusMessage $success>{successMessage}</StatusMessage>
+      )}
     </>
   );
 }
