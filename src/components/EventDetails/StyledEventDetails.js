@@ -7,7 +7,7 @@ export const DetailsWrapper = styled.main`
 
 export const EventCard = styled.section`
   position: relative;
-  background-color: papayawhip;
+  background-color: #d9afb2;
   padding: 2.5rem 1.8rem 1.8rem;
   border-radius: 12px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
