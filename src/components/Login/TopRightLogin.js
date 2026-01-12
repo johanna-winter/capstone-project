@@ -1,30 +1,21 @@
 import { signOut, useSession } from "next-auth/react";
-import {
-  StyledLoginDiv,
-  StyledLoginLink,
-  StyledRelativeDiv,
-} from "./StyledTopRightLogin";
-import Link from "next/link";
+import { LoginNav, LoginButton, LoginLink } from "./StyledTopRightLogin";
 
 export default function TopRightLogin() {
   const { data: session, status } = useSession();
   if (status === "loading") {
-    return <StyledLoginLink>Login</StyledLoginLink>;
+    return null;
   }
 
   return (
-    <StyledRelativeDiv>
-      <StyledLoginDiv>
-        {session ? (
-          <StyledLoginLink logout onClick={() => signOut()}>
-            Logout
-          </StyledLoginLink>
-        ) : (
-          <Link href="/login">
-            <StyledLoginLink>Login</StyledLoginLink>
-          </Link>
-        )}
-      </StyledLoginDiv>
-    </StyledRelativeDiv>
+    <LoginNav aria-label="Authentication">
+      {session ? (
+        <LoginButton type="button" onClick={() => signOut()}>
+          Logout
+        </LoginButton>
+      ) : (
+        <LoginLink href="/login">Login</LoginLink>
+      )}
+    </LoginNav>
   );
 }
