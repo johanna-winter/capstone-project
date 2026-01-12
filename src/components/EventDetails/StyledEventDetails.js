@@ -32,7 +32,7 @@ export const UploadLink = styled(Link)`
   text-decoration: none;
   color: #000;
   &:hover {
-    background-color: #f9e2bdff;
+    background-color: #ecd6d5;
   }
 `;
 

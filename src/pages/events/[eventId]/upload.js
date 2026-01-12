@@ -1,20 +1,21 @@
-import GuestUploadForm from "@/components/GuestUploadForm/GuestUploadForm";
+import GuestUploadPage from "@/components/GuestUploadPage/GuestUploadPage";
 import { useRouter } from "next/router";
-import styled from "styled-components";
+import useSWR from "swr";
 
-export default function GuestUploadPage() {
+const fetcher = (url) => fetch(url).then((res) => res.json());
+
+export default function UploadPage() {
   const router = useRouter();
   const { eventId } = router.query;
-  return (
-    <StyledMain>
-      <h2>Guest Upload Page</h2>
-      {eventId ? <GuestUploadForm eventId={eventId} /> : null}
-      <p>You can upload up to 5 images.</p>
-      <footer>Powered by Memory Wall</footer>
-    </StyledMain>
-  );
-}
 
-const StyledMain = styled.main`
-  padding: 1rem;
-`;
+  const {
+    data: event,
+    error,
+    isLoading,
+  } = useSWR(eventId ? `/api/events/${eventId}` : null, fetcher);
+
+  if (error) return <p>Failed to load event</p>;
+  if (isLoading || !event) return <p>Loading event data...</p>;
+
+  return <GuestUploadPage event={event} eventId={eventId} />;
+}
