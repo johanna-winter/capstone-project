@@ -1,7 +1,5 @@
 import { signOut, useSession } from "next-auth/react";
 import {
-  StyledDivFix,
-  StyledHeader,
   StyledLoginDiv,
   StyledLoginLink,
   StyledRelativeDiv,

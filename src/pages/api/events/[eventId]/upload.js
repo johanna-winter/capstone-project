@@ -1,5 +1,5 @@
 import formidable from "formidable";
-import { v2 as cloudinary } from "cloudinary";
+import cloudinary from "cloudinary";
 import dbConnect from "@/db/connect";
 import Event from "@/db/models/Event";
 
@@ -41,7 +41,7 @@ export default async function handler(request, response) {
     const folder = `memory-wall/events/${request.query.eventId}`;
     const results = [];
     for (const file of uploadedFiles) {
-      const result = await cloudinary.uploader.upload(file.filepath, {
+      const result = await cloudinary.v2.uploader.upload(file.filepath, {
         public_id: file.newFilename,
         folder,
       });

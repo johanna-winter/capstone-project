@@ -23,8 +23,8 @@ export default function LoginComponent() {
             onClick={() => signIn("github", { callbackUrl: "/?login=success" })}
           >
             <Image
-              src="/githubLogo.png"
-              alt="GitHub logo"
+              src="/img/github-logo.png"
+              alt="GitHub Logo"
               width={50}
               height={50}
             />
