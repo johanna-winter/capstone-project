@@ -109,8 +109,6 @@ export default function EventDetails({
             <EventForm event={event} onSubmit={onSubmit} onCancel={onCancel} />
           )}
         </EventCard>
-        <h3>Event Photo Gallery</h3>
-        <p>No photos added yet.</p>
       </DetailsWrapper>
     </>
   );

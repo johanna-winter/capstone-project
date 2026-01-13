@@ -17,6 +17,7 @@ export function EventCard({ event }) {
             width={1600}
             height={1200}
             priority={false}
+            loading="eager"
           />
         </CardImageWrapper>
         <CardTitle>{event.title}</CardTitle>

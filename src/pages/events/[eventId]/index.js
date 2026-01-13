@@ -5,8 +5,15 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 import useSWR from "swr";
 import { useSession } from "next-auth/react";
+import MemoryWallGallery from "@/components/MemoryWall/MemoryWallGallery";
 
-const fetcher = (url) => fetch(url).then((res) => res.json());
+const fetcher = async (url) => {
+  const res = await fetch(url);
+  if (!res.ok) {
+    throw new Error("Failed to fetch");
+  }
+  return res.json();
+};
 
 export default function EventDetailOrganizerPage() {
   const [isEditing, setIsEditing] = useState(false);
@@ -91,6 +98,7 @@ export default function EventDetailOrganizerPage() {
         onDelete={handleDelete}
         deleteError={deleteError}
       />
+      <MemoryWallGallery event={event} />
     </>
   );
 }
