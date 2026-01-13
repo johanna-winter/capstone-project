@@ -1,4 +1,4 @@
-import LoginComponent from "@/components/Login/LoginComponent";
+import LoginPage from "@/components/Login/LoginPage";
 import { StyledErrorMessageDiv } from "@/components/Login/StyledMessages";
 import { useRouter } from "next/router";
 
@@ -16,7 +16,7 @@ export default function Login() {
         </StyledErrorMessageDiv>
       )}
 
-      <LoginComponent />
+      <LoginPage />
     </div>
   );
 }

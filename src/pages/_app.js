@@ -1,4 +1,4 @@
-import TopRightLogin from "@/components/Login/TopRightLogin";
+import LoginAuthButton from "@/components/Login/LoginAuthButton";
 import "@/styles/globals.css";
 import { SessionProvider } from "next-auth/react";
 
@@ -8,7 +8,7 @@ export default function App({
 }) {
   return (
     <SessionProvider session={session}>
-      <TopRightLogin />
+      <LoginAuthButton />
       <Component {...pageProps} />
     </SessionProvider>
   );
