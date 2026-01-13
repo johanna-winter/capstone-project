@@ -105,7 +105,7 @@ export default function EventDetailOrganizerPage() {
 
 export const BackButton = styled(Link)`
   display: inline-block;
-  margin: 1rem;
+  margin: 1rem 0;
   padding: 0.5rem 1rem;
   border-radius: 6px;
   border: 1px solid #000;

@@ -1,12 +1,12 @@
 import EventForm from "@/components/EventForm/EventForm";
 import EventList from "@/components/EventList/EventList";
-import styled from "styled-components";
 import { useSWRConfig } from "swr";
 import { useSession } from "next-auth/react";
+import { LoginGreeting } from "@/components/Login/StyledLoginMessages";
 
 export default function HomePage() {
   const { mutate } = useSWRConfig();
-  const { status } = useSession();
+  const { data: session, status } = useSession();
 
   async function handleCreateEvent(eventData) {
     const response = await fetch("/api/events", {
@@ -27,26 +27,23 @@ export default function HomePage() {
   }
   if (status !== "authenticated") {
     return (
-      <StyledMain>
-        <h1>Memory Wall</h1>
+      <>
         <p>Please log in to create and manage your events.</p>
         <p>
           If you are a guest, please use the link you received to view the
           gallery or upload photos.
         </p>
-      </StyledMain>
+      </>
     );
   }
 
   return (
-    <StyledMain>
-      <h1>Memory Wall</h1>
+    <>
+      <LoginGreeting>
+        Hello{session.user?.name ? `, ${session.user.name}` : ""} &#128075;
+      </LoginGreeting>
       <EventForm onSubmit={handleCreateEvent} />
       <EventList />
-    </StyledMain>
+    </>
   );
 }
-
-const StyledMain = styled.main`
-  padding: 1rem;
-`;

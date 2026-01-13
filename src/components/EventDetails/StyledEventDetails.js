@@ -1,10 +1,6 @@
 import Link from "next/link";
 import styled from "styled-components";
 
-export const DetailsWrapper = styled.main`
-  padding: 1rem;
-`;
-
 export const EventCard = styled.section`
   position: relative;
   background-color: #d9afb2;

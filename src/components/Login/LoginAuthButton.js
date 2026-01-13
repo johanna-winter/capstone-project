@@ -4,10 +4,6 @@ import {
   LoginButton,
   LoginLink,
 } from "@/components/Login/StyledLoginAuthButton";
-import {
-  LoginGreeting,
-  LoginGreetingWrapper,
-} from "@/components/Login/StyledLoginMessages";
 
 export default function LoginAuthButton() {
   const { data: session, status } = useSession();
@@ -18,14 +14,9 @@ export default function LoginAuthButton() {
   return (
     <LoginNav aria-label="Authentication">
       {session ? (
-        <LoginGreetingWrapper>
-          <LoginGreeting>
-            Hello{session.user?.name ? `, ${session.user.name}` : ""} &#128075;
-          </LoginGreeting>
-          <LoginButton type="button" onClick={() => signOut()}>
-            Logout
-          </LoginButton>
-        </LoginGreetingWrapper>
+        <LoginButton type="button" onClick={() => signOut()}>
+          Logout
+        </LoginButton>
       ) : (
         <LoginLink href="/login">Login</LoginLink>
       )}

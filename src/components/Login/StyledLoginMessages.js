@@ -12,14 +12,11 @@ export const LoginMessage = styled.p`
   border: 1px solid ${(props) => (props.$error ? "#f5c6cb" : "#c3e6cb")};
 `;
 
-export const LoginGreeting = styled.span`
-  font-size: 0.9rem;
+export const LoginGreeting = styled.p`
+  margin-top: 2rem;
+  font-size: 1rem;
   line-height: 1;
   white-space: nowrap;
-`;
-
-export const LoginGreetingWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
+  color: #0b1226;
+  text-align: center;
 `;

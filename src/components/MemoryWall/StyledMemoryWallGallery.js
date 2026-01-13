@@ -4,7 +4,7 @@ export const GallerySection = styled.section`
   margin-top: 15px;
 `;
 
-export const GalleryTitle = styled.h3`
+export const GalleryTitle = styled.h2`
   margin-bottom: 25px;
   text-align: center;
 `;
