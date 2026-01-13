@@ -30,17 +30,34 @@ export default function LoginPage() {
             Logout
           </LoginProviderButton>
         ) : (
-          <LoginProviderButton
-            onClick={() => signIn("github", { callbackUrl: "/?login=success" })}
-          >
-            <Image
-              src="/img/github-logo.png"
-              alt="GitHub Logo"
-              width={30}
-              height={30}
-            />
-            Continue with GitHub
-          </LoginProviderButton>
+          <>
+            <LoginProviderButton
+              onClick={() =>
+                signIn("github", { callbackUrl: "/?login=success" })
+              }
+            >
+              <Image
+                src="/img/github-logo.png"
+                alt="GitHub Logo"
+                width={30}
+                height={30}
+              />
+              Continue with GitHub
+            </LoginProviderButton>
+            <LoginProviderButton
+              onClick={() =>
+                signIn("google", { callbackUrl: "/?login=success" })
+              }
+            >
+              <Image
+                src="/img/google-logo.png"
+                alt="Google Logo"
+                width={30}
+                height={30}
+              />
+              Continue with Google
+            </LoginProviderButton>
+          </>
         )}
       </LoginCard>
     </LoginPageMain>
