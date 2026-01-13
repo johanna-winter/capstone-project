@@ -8,9 +8,13 @@ import {
   LoginCardText,
   LoginProviderButton,
 } from "@/components/Login/StyledLoginPage";
+import { LoginMessage } from "@/components/Login/StyledLoginMessages";
+import { useRouter } from "next/router";
 
 export default function LoginPage() {
   const { data: session } = useSession();
+  const router = useRouter();
+  const { error } = router.query;
 
   return (
     <LoginPageMain>
@@ -25,6 +29,9 @@ export default function LoginPage() {
             gallery.
           </LoginCardText>
         </LoginCardHeader>
+        {error && (
+          <LoginMessage $error>Login failed. Please try again.</LoginMessage>
+        )}
         {session ? (
           <LoginProviderButton logout onClick={() => signOut()}>
             Logout
