@@ -17,7 +17,6 @@ export default function Layout({ children }) {
 
 const Main = styled.main`
   padding: 80px 1rem 80px 1rem;
-  background-color: #ecd6d5;
 `;
 
 const Header = styled.header`
