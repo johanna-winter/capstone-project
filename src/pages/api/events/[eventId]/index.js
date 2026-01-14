@@ -1,11 +1,13 @@
 import dbConnect from "@/db/connect";
 import Event from "@/db/models/Event";
+import { getServerSession } from "next-auth/next";
+import { authOptions } from "@/pages/api/auth/[...nextauth]";
 
 export default async function handler(request, response) {
-  await dbConnect();
   const { eventId } = request.query;
 
   if (request.method === "GET") {
+    await dbConnect();
     try {
       const event = await Event.findById(eventId);
       if (!event) {
@@ -18,6 +20,11 @@ export default async function handler(request, response) {
     }
   }
   if (request.method === "PUT") {
+    const session = await getServerSession(request, response, authOptions);
+    if (!session) {
+      return response.status(401).json({ error: "Not authorized" });
+    }
+    await dbConnect();
     const { title, description, date } = request.body;
     if (!title || title.trim() === "") {
       return response.status(400).json({ error: "Event title is required" });
@@ -44,6 +51,11 @@ export default async function handler(request, response) {
     }
   }
   if (request.method === "DELETE") {
+    const session = await getServerSession(request, response, authOptions);
+    if (!session) {
+      return response.status(401).json({ error: "Not authorized" });
+    }
+    await dbConnect();
     try {
       const deletedEvent = await Event.findByIdAndDelete(eventId);
 
