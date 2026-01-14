@@ -5,7 +5,13 @@ const nextConfig = {
   devIndicators: false,
   turbopack: {},
   images: {
-    domains: ["res.cloudinary.com"],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "res.cloudinary.com",
+        pathname: "/**",
+      },
+    ],
   },
   webpack(config) {
     config.module.rules.push({
