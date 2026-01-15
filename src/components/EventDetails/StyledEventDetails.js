@@ -17,7 +17,7 @@ export const EventLinkText = styled.p`
 export const ShareSection = styled.section`
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.4rem;
 `;
 
 export const UploadLink = styled(Link)`

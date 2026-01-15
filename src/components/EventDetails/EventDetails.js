@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import EventForm from "@/components/EventForm/EventForm";
 import {
-  DetailsWrapper,
   EventCard,
   EventLinkText,
   ShareSection,
@@ -14,7 +13,8 @@ import {
 
 export default function EventDetails({
   event,
-  link,
+  uploadLink,
+  galleryLink,
   isEditing,
   onEdit,
   onCancel,
@@ -22,24 +22,38 @@ export default function EventDetails({
   onDelete,
   deleteError,
 }) {
-  const [copiedLink, setCopiedLink] = useState(false);
+  const [copiedUploadLink, setCopiedUploadLink] = useState(false);
+  const [copiedGalleryLink, setCopiedGalleryLink] = useState(false);
   const [showConfirmDelete, setShowConfirmDelete] = useState(false);
   const displayDate = event.date
     ? new Date(event.date).toLocaleDateString("en-GB")
     : "";
 
-  async function handleCopyLink() {
-    const fullLink = `${window.location.origin}${link}`;
+  async function handleCopyUploadLink() {
+    const fullLink = `${window.location.origin}${uploadLink}`;
     await navigator.clipboard.writeText(fullLink);
-    setCopiedLink(true);
+    setCopiedUploadLink(true);
+  }
+  async function handleCopyGalleryLink() {
+    const fullLink = `${window.location.origin}${galleryLink}`;
+    await navigator.clipboard.writeText(fullLink);
+    setCopiedGalleryLink(true);
   }
   useEffect(() => {
-    if (!copiedLink) return;
-    const timeout = setTimeout(() => setCopiedLink(false), 3000);
+    if (!copiedUploadLink) return;
+    const timeout = setTimeout(() => setCopiedUploadLink(false), 3000);
     return () => {
       clearTimeout(timeout);
     };
-  }, [copiedLink]);
+  }, [copiedUploadLink]);
+
+  useEffect(() => {
+    if (!copiedGalleryLink) return;
+    const timeout = setTimeout(() => setCopiedUploadLink(false), 3000);
+    return () => {
+      clearTimeout(timeout);
+    };
+  }, [copiedGalleryLink]);
 
   return (
     <>
@@ -97,10 +111,21 @@ export default function EventDetails({
               </p>
             )}
             <ShareSection>
-              <EventLinkText>Share this link with your guests:</EventLinkText>
-              <UploadLink href={link}>{event.title} Event</UploadLink>
-              <CopyLinkButton onClick={handleCopyLink}>
-                {copiedLink ? "Successfully copied!" : "Copy Link"}
+              <EventLinkText>Share upload link with your guests:</EventLinkText>
+              <UploadLink href={uploadLink}>
+                {event.title} Upload Page
+              </UploadLink>
+              <CopyLinkButton onClick={handleCopyUploadLink}>
+                {copiedUploadLink ? "Successfully copied!" : "Copy Link"}
+              </CopyLinkButton>
+              <EventLinkText>
+                Share gallery link with your guests:
+              </EventLinkText>
+              <UploadLink href={galleryLink}>
+                {event.title} Public Gallery
+              </UploadLink>
+              <CopyLinkButton onClick={handleCopyGalleryLink}>
+                {copiedGalleryLink ? "Successfully copied!" : "Copy Link"}
               </CopyLinkButton>
             </ShareSection>
           </>

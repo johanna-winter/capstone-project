@@ -21,6 +21,7 @@ export default function EventDetailOrganizerPage() {
   const router = useRouter();
   const { eventId } = router.query;
   const guestUploadLink = `/events/${eventId}/upload`;
+  const guestGalleryLink = `/events/${eventId}/gallery`;
   const { status } = useSession();
 
   const {
@@ -90,7 +91,8 @@ export default function EventDetailOrganizerPage() {
       <BackButton href="/">Back</BackButton>
       <EventDetails
         event={event}
-        link={guestUploadLink}
+        uploadLink={guestUploadLink}
+        galleryLink={guestGalleryLink}
         isEditing={isEditing}
         onEdit={() => setIsEditing(true)}
         onCancel={() => setIsEditing(false)}
