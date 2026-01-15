@@ -5,6 +5,9 @@ import {
   UploadPageTitle,
   UploadDateRow,
   UploadPageContent,
+  GalleryCallout,
+  GalleryCalloutText,
+  GalleryLinkButton,
 } from "./StyledGuestUploadPage";
 
 export default function GuestUploadPage({ event, eventId }) {
@@ -20,9 +23,25 @@ export default function GuestUploadPage({ event, eventId }) {
         <UploadPageTitle>{event.title}</UploadPageTitle>
         {formattedDate && <UploadDateRow>{formattedDate}</UploadDateRow>}
       </UploadPageHeader>
+      <GalleryCallout>
+        <GalleryCalloutText>
+          Got photos to share? Add them to the album so everyone can relive the
+          best moments together 💛
+        </GalleryCalloutText>
+      </GalleryCallout>
       <UploadPageContent>
         {eventId ? <GuestUploadForm eventId={eventId} /> : null}
       </UploadPageContent>
+      <GalleryCallout>
+        <GalleryCalloutText>
+          Curious what others have shared already? ✨ Take a look at the event’s
+          memory wall.
+        </GalleryCalloutText>
+
+        <GalleryLinkButton href={`/events/${eventId}/gallery`}>
+          View the gallery
+        </GalleryLinkButton>
+      </GalleryCallout>
     </>
   );
 }

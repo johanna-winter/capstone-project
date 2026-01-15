@@ -27,7 +27,7 @@ export default function HomeLoggedOut() {
 
       <FeatureWrapper>
         <FeatureCard>
-          <FeatureTitle>One link for your guests</FeatureTitle>
+          <FeatureTitle>Share links with your guests</FeatureTitle>
           <FeatureText>
             Guests can upload photos or view the gallery via a shared event
             link.

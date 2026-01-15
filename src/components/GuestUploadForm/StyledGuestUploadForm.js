@@ -4,9 +4,9 @@ export const UploadFormWrapper = styled.section`
   border: none;
   border-radius: 16px;
   padding: 24px;
+  max-width: 47rem;
+  margin: 0 auto;
 `;
-
-// NOTE: similar to EventForm styles, can be refactored later.
 
 export const StyledUploadForm = styled.form`
   display: flex;
@@ -73,13 +73,13 @@ export const UploadButton = styled.button`
   display: block;
   margin: 0 auto;
   cursor: pointer;
-  border: 1px solid var(--primary-300);
+  border: 1px solid var(--grey-900);
   border-radius: 6px;
   font-weight: bold;
   color: var(--background-100);
-  background-color: var(--primary-300);
+  background-color: var(--grey-900);
   &:hover {
-    background-color: var(--primary-500);
+    background-color: var(--grey-700);
   }
 `;
 

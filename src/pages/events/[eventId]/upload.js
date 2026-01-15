@@ -28,9 +28,7 @@ export default function UploadPage() {
       {status === "authenticated" && (
         <BackButton href={`/events/${eventId}/`}></BackButton>
       )}
-      <EventCard>
-        <GuestUploadPage event={event} eventId={eventId} />
-      </EventCard>
+      <GuestUploadPage event={event} eventId={eventId} />
     </PageStack>
   );
 }
