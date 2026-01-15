@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const GallerySection = styled.section`
-  margin-top: 15px;
+  margin: 25px 0;
 `;
 
 export const GalleryTitle = styled.h2`
