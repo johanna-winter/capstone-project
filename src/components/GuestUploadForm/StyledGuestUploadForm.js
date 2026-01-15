@@ -1,11 +1,9 @@
 import styled from "styled-components";
 
 export const UploadFormWrapper = styled.section`
-  border: 1.5px solid var(--accent-600);
+  border: none;
   border-radius: 16px;
   padding: 24px;
-  background-color: var(--background-400);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
 `;
 
 // NOTE: similar to EventForm styles, can be refactored later.

@@ -1,7 +1,9 @@
 import GuestUploadForm from "@/components/GuestUploadForm/GuestUploadForm";
 import {
-  UploadPageWrapper,
   UploadPageHeader,
+  InvitationText,
+  UploadPageTitle,
+  UploadDateRow,
   UploadPageContent,
 } from "./StyledGuestUploadPage";
 
@@ -10,14 +12,17 @@ export default function GuestUploadPage({ event, eventId }) {
     ? new Date(event.date).toLocaleDateString("en-GB")
     : null;
   return (
-    <UploadPageWrapper>
+    <>
       <UploadPageHeader>
-        <h2>{event.title}</h2>
-        {formattedDate && <p>{formattedDate}</p>}
+        <InvitationText>
+          You have been invited to share your photos from:
+        </InvitationText>
+        <UploadPageTitle>{event.title}</UploadPageTitle>
+        {formattedDate && <UploadDateRow>{formattedDate}</UploadDateRow>}
       </UploadPageHeader>
       <UploadPageContent>
         {eventId ? <GuestUploadForm eventId={eventId} /> : null}
       </UploadPageContent>
-    </UploadPageWrapper>
+    </>
   );
 }

@@ -3,6 +3,8 @@ import { useRouter } from "next/router";
 import useSWR from "swr";
 import BackButton from "@/components/BackButton/BackButton";
 import { useSession } from "next-auth/react";
+import { EventCard } from "@/components/EventDetails/StyledEventDetails";
+import styled from "styled-components";
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
@@ -21,12 +23,20 @@ export default function UploadPage() {
   if (isLoading || !event) return <p>Loading event data...</p>;
 
   return (
-    <>
+    <PageStack>
       {" "}
       {status === "authenticated" && (
         <BackButton href={`/events/${eventId}/`}></BackButton>
       )}
-      <GuestUploadPage event={event} eventId={eventId} />
-    </>
+      <EventCard>
+        <GuestUploadPage event={event} eventId={eventId} />
+      </EventCard>
+    </PageStack>
   );
 }
+
+const PageStack = styled.section`
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+`;

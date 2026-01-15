@@ -63,7 +63,6 @@ export default function GuestUploadForm({ eventId }) {
     <>
       <UploadFormWrapper>
         <StyledUploadForm onSubmit={handleUpload}>
-          <h3>Upload your memory:</h3>
           <UploadGroup>
             <UploadFormLabel htmlFor="guest-images">
               {" "}
