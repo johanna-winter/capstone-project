@@ -7,9 +7,12 @@ export const LoginMessage = styled.p`
   font-weight: 500;
   text-align: center;
 
-  color: ${(props) => (props.$error ? "#721c24" : "#155724")};
-  background-color: ${(props) => (props.$error ? "#f8d7da" : "#d4edda")};
-  border: 1px solid ${(props) => (props.$error ? "#f5c6cb" : "#c3e6cb")};
+  color: ${(props) =>
+    props.$error ? "var(--error-600)" : "var(--success-500)"};
+  background-color: ${(props) =>
+    props.$error ? "var(--error-100)" : "var(--success-100)"};
+  border: 1px solid
+    ${(props) => (props.$error ? "var(--error-300)" : "var(--success-300)")};
 `;
 
 export const LoginGreeting = styled.p`
@@ -17,6 +20,6 @@ export const LoginGreeting = styled.p`
   font-size: 1rem;
   line-height: 1;
   white-space: nowrap;
-  color: #0b1226;
+  color: var(--grey-900);
   text-align: center;
 `;

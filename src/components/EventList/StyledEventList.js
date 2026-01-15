@@ -12,7 +12,7 @@ export const EventListGrid = styled.ul`
 
 export const StyledLink = styled(Link)`
   text-decoration: none;
-  color: #000;
+  color: var(--grey-900);
 `;
 
 export const StyledImage = styled(Image)`
@@ -23,7 +23,7 @@ export const StyledImage = styled(Image)`
 `;
 
 export const ListTitle = styled.h2`
-  color: #0b1226;
+  color: var(--grey-900);
   text-align: center;
   font-size: 1.6rem;
   margin-bottom: 1rem;

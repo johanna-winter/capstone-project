@@ -4,7 +4,7 @@ import Image from "next/image";
 
 export const Card = styled.li`
   list-style: none;
-  background-color: #a6818b;
+  background-color: var(--background-500);
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
@@ -19,7 +19,7 @@ export const Card = styled.li`
 
 export const CardLink = styled(Link)`
   text-decoration: none;
-  color: #000;
+  color: var(--grey-900);
   display: block;
 `;
 
@@ -37,7 +37,7 @@ export const CardImage = styled(Image)`
 
 export const CardTitle = styled.h2`
   margin: 0;
-  color: #0b1226;
+  color: var(--grey-900);
   font-size: 1.5rem;
   min-height: 4.5rem;
   display: flex;
@@ -48,11 +48,11 @@ export const CardTitle = styled.h2`
 `;
 
 export const DateTag = styled.span`
-  background: #003f3b;
-  color: #fff;
+  background: var(--primary-500);
+  color: var(--grey-100);
   padding: 0.4rem 0.7rem;
   border-radius: 8px;
   font-size: 0.85rem;
   font-weight: 500;
-  border: 1px solid #003f3b;
+  border: 1px solid var(--primary-500);
 `;

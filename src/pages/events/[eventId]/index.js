@@ -104,17 +104,21 @@ export default function EventDetailOrganizerPage() {
 }
 
 export const BackButton = styled(Link)`
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  font: inherit;
   margin: 1rem 0;
   padding: 0.5rem 1rem;
   border-radius: 6px;
-  border: 1px solid #000;
-  background: #000;
-  color: #fff;
-  font-weight: 600;
+  border: none;
+  background: var(--grey-900);
+  color: var(--grey-100);
+  line-height: 1;
   text-decoration: none;
   cursor: pointer;
+  transition: opacity 0.2s ease;
+
   &:hover {
-    background: #333;
+    background: var(--grey-700);
   }
 `;

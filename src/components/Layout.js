@@ -34,7 +34,7 @@ const Header = styled.header`
   top: 0;
   left: 0;
   z-index: 1000;
-  background-color: #003f3b;
+  background-color: var(--primary-500);
 `;
 
 export const HeaderNav = styled.nav`
@@ -52,7 +52,7 @@ const Title = styled.h1`
   justify-self: center;
   margin: 0;
   font-size: 2.2rem;
-  color: #ecd6d5;
+  color: var(--background-300);
   white-space: nowrap;
 
   @media (max-width: 520px) {

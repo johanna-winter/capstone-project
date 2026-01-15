@@ -10,18 +10,20 @@ const GlobalStyles = createGlobalStyle`
     --background-100: #ffffff;
     --background-300: #ecd6d5;
     --background-400: #d9afb2;
+    --background-500: #a6818b;
 
     --accent-100: #a9c7d9;
     --accent-300: #9abbd9;
     --accent-600: #733944;
 
     --success-100: #e6f4ea;
-    --success-300: #34a853;
+    --success-300: #c3e6cb;
+    --success-400: #34a853;
     --success-500: #137333;
 
     --error-100: #fdecea;
     --error-300: #d9afb2;
-    --error-500: #d93025;
+    --error-500: #b9230b;
     --error-600: #a50e0e;
 
     --grey-100: #f2f2f2;

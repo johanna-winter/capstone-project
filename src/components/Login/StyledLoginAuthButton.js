@@ -17,13 +17,13 @@ export const LoginButton = styled.button`
   padding: 0.5rem 1rem;
   border-radius: 6px;
   border: none;
-  background-color: #a9c7d9;
-  color: #0b1226;
+  background-color: var(--accent-100);
+  color: var(--grey-900);
   cursor: pointer;
   transition: opacity 0.2s ease;
 
   &:hover {
-    opacity: 0.8;
+    background-color: var(--accent-300);
   }
 `;
 
@@ -35,8 +35,8 @@ export const LoginLink = styled(Link)`
 
   padding: 0.5rem 0.9rem;
   border-radius: 6px;
-  color: #0b1226;
-  background-color: #a9c7d9;
+  color: var(--grey-900);
+  background-color: var(--accent-100);
   text-decoration: none;
   cursor: pointer;
   transition: opacity 0.2s ease;

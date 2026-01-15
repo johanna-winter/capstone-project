@@ -1,10 +1,10 @@
 import styled from "styled-components";
 
 export const UploadFormWrapper = styled.section`
-  border: 1.5px solid #733944;
+  border: 1.5px solid var(--accent-600);
   border-radius: 16px;
   padding: 24px;
-  background-color: #d9afb2;
+  background-color: var(--background-400);
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
 `;
 
@@ -30,15 +30,15 @@ export const UploadPhotoInput = styled.input`
     padding: 0.5rem 1.25rem;
     margin-right: 0.75rem;
     cursor: pointer;
-    background: #5d8c8c;
-    border: 1px solid #025751;
+    background: var(--primary-200);
+    border: 1px solid var(--primary-300);
     border-radius: 6px;
     font-weight: bold;
-    color: #fff;
+    color: var(--background-100);
   }
 
   &::file-selector-button:hover {
-    background: #003f3b;
+    background: var(--primary-500);
   }
 `;
 
@@ -53,13 +53,13 @@ export const UploadFormInput = styled.input`
   margin-top: 4px;
   padding: 10px 12px;
   border-radius: 8px;
-  border: 1px solid #c9a5a8;
-  background-color: #ecd6d5;
+  border: 1px solid var(--background-400);
+  background-color: var(--background-300);
   font-size: 0.9rem;
 
   &:focus {
     outline: none;
-    border-color: #333;
+    border-color: var(--grey-700);
   }
 `;
 
@@ -75,13 +75,13 @@ export const UploadButton = styled.button`
   display: block;
   margin: 0 auto;
   cursor: pointer;
-  border: 1px solid #025751;
+  border: 1px solid var(--primary-300);
   border-radius: 6px;
   font-weight: bold;
-  color: #fff;
-  background-color: #025751;
+  color: var(--background-100);
+  background-color: var(--primary-300);
   &:hover {
-    background-color: #003f3b;
+    background-color: var(--primary-500);
   }
 `;
 
@@ -89,7 +89,10 @@ export const StatusMessage = styled.p`
   padding: 0.75rem 1rem;
   border-radius: 6px;
   font-weight: bold;
-  background-color: ${(props) => (props.$success ? "#e6f4ea" : "#fdecea")};
-  border: 1px solid ${(props) => (props.$success ? "#34a853" : "#d93025")};
-  color: ${(props) => (props.$success ? "#137333" : "#a50e0e")};
+  background-color: ${(props) =>
+    props.$success ? "var(--success-100)" : "var(--error-100)"};
+  border: 1px solid
+    ${(props) => (props.$success ? "var(--success-300)" : "var(--error-300)")};
+  color: ${(props) =>
+    props.$success ? "var(--success-500)" : "var(--error-600)"};
 `;

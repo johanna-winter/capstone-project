@@ -10,8 +10,8 @@ export const LoginPageMain = styled.main`
 export const LoginCard = styled.section`
   width: 100%;
   max-width: 440px;
-  background-color: #d9afb2;
-  border: 1px solid #d9afb2;
+  background-color: var(--background-400);
+  border: 1px solid var(--background-400);
   border-radius: 12px;
   padding: 2rem;
   box-shadow: 0 12px 30px rgba(146, 83, 95, 0.28);
@@ -44,8 +44,8 @@ export const LoginProviderButton = styled.button`
   font-weight: 600;
   font-weight: bold;
   cursor: pointer;
-  background-color: #0b1226;
-  color: #fff;
+  background-color: var(--grey-900);
+  color: var(--background-100);
   margin-bottom: 0.75rem;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 

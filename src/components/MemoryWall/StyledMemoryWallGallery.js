@@ -26,7 +26,7 @@ export const GalleryItem = styled.li`
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
-  background: #a6818b;
+  background: var(--background-500);
   transition: transform 0.15s ease, box-shadow 0.15s ease;
 
   &:hover {
@@ -50,7 +50,7 @@ export const GalleryImageMeta = styled.div`
   padding: 10px 12px;
   display: grid;
   gap: 4px;
-  background: #a6818b;
+  background: var(--background-500);
 `;
 
 export const GalleryImageName = styled.p`
