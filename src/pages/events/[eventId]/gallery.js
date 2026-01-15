@@ -1,6 +1,8 @@
 import MemoryWallGallery from "@/components/MemoryWall/MemoryWallGallery";
 import { useRouter } from "next/router";
 import useSWR from "swr";
+import BackButton from "@/components/BackButton/BackButton";
+import { useSession } from "next-auth/react";
 
 const fetcher = async (url) => {
   const response = await fetch(url);
@@ -11,6 +13,7 @@ const fetcher = async (url) => {
 export default function GalleryPage() {
   const router = useRouter();
   const { eventId } = router.query;
+  const { status } = useSession();
 
   const {
     data: event,
@@ -26,6 +29,10 @@ export default function GalleryPage() {
 
   return (
     <>
+      {" "}
+      {status === "authenticated" && (
+        <BackButton href={`/events/${eventId}/`}></BackButton>
+      )}
       <MemoryWallGallery event={event} />
     </>
   );

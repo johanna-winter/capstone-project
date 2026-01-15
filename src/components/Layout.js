@@ -13,7 +13,7 @@ export default function Layout({ children }) {
           <HeaderNav>
             <Title>Memory Wall</Title>
             <AuthArea>
-              <LoginAuthButton />
+              {status === "authenticated" && <LoginAuthButton />}
             </AuthArea>
           </HeaderNav>
         </Header>

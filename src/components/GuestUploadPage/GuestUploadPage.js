@@ -1,9 +1,8 @@
-import GuestUploadForm from "../GuestUploadForm/GuestUploadForm";
+import GuestUploadForm from "@/components/GuestUploadForm/GuestUploadForm";
 import {
   UploadPageWrapper,
   UploadPageHeader,
   UploadPageContent,
-  UploadPageFooter,
 } from "./StyledGuestUploadPage";
 
 export default function GuestUploadPage({ event, eventId }) {
@@ -13,13 +12,12 @@ export default function GuestUploadPage({ event, eventId }) {
   return (
     <UploadPageWrapper>
       <UploadPageHeader>
-        <h2>Memory Wall for {event.title}</h2>
+        <h2>{event.title}</h2>
         {formattedDate && <p>{formattedDate}</p>}
       </UploadPageHeader>
       <UploadPageContent>
         {eventId ? <GuestUploadForm eventId={eventId} /> : null}
       </UploadPageContent>
-      <UploadPageFooter>Powered by Memory Wall</UploadPageFooter>
     </UploadPageWrapper>
   );
 }

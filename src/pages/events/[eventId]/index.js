@@ -1,8 +1,8 @@
 import EventDetails from "@/components/EventDetails/EventDetails";
+import BackButton from "@/components/BackButton/BackButton";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import styled from "styled-components";
 import useSWR from "swr";
 import { useSession } from "next-auth/react";
 import MemoryWallGallery from "@/components/MemoryWall/MemoryWallGallery";
@@ -104,23 +104,3 @@ export default function EventDetailOrganizerPage() {
     </>
   );
 }
-
-export const BackButton = styled(Link)`
-  display: inline-flex;
-  align-items: center;
-  font: inherit;
-  margin: 1rem 0;
-  padding: 0.5rem 1rem;
-  border-radius: 6px;
-  border: none;
-  background: var(--grey-900);
-  color: var(--grey-100);
-  line-height: 1;
-  text-decoration: none;
-  cursor: pointer;
-  transition: opacity 0.2s ease;
-
-  &:hover {
-    background: var(--grey-700);
-  }
-`;

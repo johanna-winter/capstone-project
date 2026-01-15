@@ -7,6 +7,7 @@ export const LoggedOutWrapper = styled.section`
 `;
 
 export const HeaderCard = styled.header`
+  margin-bottom: 3rem;
   padding: 2rem 1.5rem;
   border-radius: 16px;
   background: var(--background-400);
