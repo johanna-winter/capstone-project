@@ -14,10 +14,13 @@ export default function EventList() {
   const sortedEvents = [...events].sort((a, b) => b._id.localeCompare(a._id));
 
   return (
-    <EventListGrid>
-      {sortedEvents.map((event) => (
-        <EventCard key={event._id} event={event}></EventCard>
-      ))}
-    </EventListGrid>
+    <>
+      <h2>Events Overview</h2>
+      <EventListGrid>
+        {sortedEvents.map((event) => (
+          <EventCard key={event._id} event={event}></EventCard>
+        ))}
+      </EventListGrid>
+    </>
   );
 }
