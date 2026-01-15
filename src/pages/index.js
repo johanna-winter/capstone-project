@@ -3,6 +3,7 @@ import EventList from "@/components/EventList/EventList";
 import { useSWRConfig } from "swr";
 import { useSession } from "next-auth/react";
 import { LoginGreeting } from "@/components/Login/StyledLoginMessages";
+import HomeLoggedOut from "@/components/HomeLoggedOut/HomeLoggedOut";
 
 export default function HomePage() {
   const { mutate } = useSWRConfig();
@@ -26,15 +27,7 @@ export default function HomePage() {
     return null;
   }
   if (status !== "authenticated") {
-    return (
-      <>
-        <p>Please log in to create and manage your events.</p>
-        <p>
-          If you are a guest, please use the link you received to view the
-          gallery or upload photos.
-        </p>
-      </>
-    );
+    return <HomeLoggedOut />;
   }
 
   return (

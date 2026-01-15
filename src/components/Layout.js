@@ -1,9 +1,13 @@
 import styled from "styled-components";
 import LoginAuthButton from "./Login/LoginAuthButton";
+import { useSession } from "next-auth/react";
+import LoggedOutFooter from "./FooterLoggedOut/FooterLoggedOut";
 
 export default function Layout({ children }) {
+  const { status } = useSession();
+
   return (
-    <>
+    <PageWrapper>
       <Main>
         <Header>
           <HeaderNav>
@@ -15,11 +19,19 @@ export default function Layout({ children }) {
         </Header>
         {children}
       </Main>
-    </>
+      {status !== "authenticated" && <LoggedOutFooter />}
+    </PageWrapper>
   );
 }
 
+const PageWrapper = styled.div`
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+`;
+
 const Main = styled.main`
+  flex: 1;
   padding: 80px 1rem 80px 1rem;
 
   @media (min-width: 421px) {
