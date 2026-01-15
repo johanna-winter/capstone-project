@@ -1,5 +1,5 @@
 import Layout from "@/components/Layout";
-import "@/styles/globals.css";
+import GlobalStyles from "@/styles/GlobalStyles";
 import { SessionProvider } from "next-auth/react";
 
 export default function App({
@@ -8,6 +8,7 @@ export default function App({
 }) {
   return (
     <SessionProvider session={session}>
+      <GlobalStyles />
       <Layout>
         <Component {...pageProps} />
       </Layout>
