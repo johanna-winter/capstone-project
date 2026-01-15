@@ -1,15 +1,13 @@
 import styled from "styled-components";
 
 export const LoginPageMain = styled.main`
-  min-height: 80vh;
-  display: grid;
-  place-items: center;
   padding: 2rem 1rem;
 `;
 
 export const LoginCard = styled.section`
   width: 100%;
   max-width: 440px;
+  margin: 0 auto;
   background-color: var(--background-400);
   border: 1px solid var(--background-400);
   border-radius: 12px;

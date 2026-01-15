@@ -32,7 +32,7 @@ const PageWrapper = styled.div`
 
 const Main = styled.main`
   flex: 1;
-  padding: 80px 1rem 80px 1rem;
+  padding: 80px 1rem 0;
 
   @media (min-width: 421px) {
     padding-top: 80px;

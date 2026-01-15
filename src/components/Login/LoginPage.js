@@ -21,7 +21,7 @@ export default function LoginPage() {
       <LoginCard aria-labelledby="login-title">
         <LoginCardHeader>
           <LoginCardTitle id="login-title">
-            Get the full experience &#10024; &#x1F4F7;
+            Get the full experience &#10024;&#x1F4F7;
           </LoginCardTitle>
           <LoginCardText>
             Log in to create and manage your events. No account needed for your
