@@ -7,6 +7,7 @@ import {
   LightboxMedia,
   CloseButton,
 } from "./StyledPhotoDetailView";
+import { useEffect } from "react";
 
 export default function PhotoDetailView({
   photos = [],
@@ -14,6 +15,19 @@ export default function PhotoDetailView({
   onClose,
 }) {
   const photo = photos[selectedIndex];
+
+  useEffect(() => {
+    function handleEscapeKey(event) {
+      if (event.key === "Escape") {
+        onClose();
+      }
+    }
+    document.addEventListener("keydown", handleEscapeKey);
+    return () => {
+      document.removeEventListener("keydown", handleEscapeKey);
+    };
+  });
+
   if (!photo) return null;
 
   return (
