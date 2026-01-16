@@ -10,9 +10,14 @@ import {
   GalleryImageName,
   GalleryImageCaption,
 } from "./StyledMemoryWallGallery";
+import PhotoDetailView from "@/components/PhotoDetailView/PhotoDetailView";
+import { useState } from "react";
 
 export default function MemoryWallGallery({ event }) {
   const uploads = event.uploads ?? [];
+  const [isOpen, setIsOpen] = useState(false);
+  const [selectedIndex, setSelectedIndex] = useState(0);
+
   return (
     <GallerySection>
       <GalleryTitle>{event.title} Photo Gallery</GalleryTitle>
@@ -20,8 +25,14 @@ export default function MemoryWallGallery({ event }) {
         <GalleryEmptyState>No photos added yet.</GalleryEmptyState>
       ) : (
         <GalleryGridLayout>
-          {uploads.map((upload) => (
-            <GalleryItem key={upload._id}>
+          {uploads.map((upload, index) => (
+            <GalleryItem
+              key={upload._id}
+              onClick={() => {
+                setSelectedIndex(index);
+                setIsOpen(true);
+              }}
+            >
               <GalleryImageWrapper>
                 <Image
                   src={upload.imageUrl}
@@ -46,6 +57,13 @@ export default function MemoryWallGallery({ event }) {
             </GalleryItem>
           ))}
         </GalleryGridLayout>
+      )}
+      {isOpen && (
+        <PhotoDetailView
+          photos={uploads}
+          selectedIndex={selectedIndex}
+          onClose={() => setIsOpen(false)}
+        />
       )}
     </GallerySection>
   );
