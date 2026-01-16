@@ -4,6 +4,7 @@ import {
   LightboxBackdrop,
   LightboxCard,
   LightboxHeader,
+  LightboxCounter,
   LightboxImageWrap,
   LightboxMedia,
   CloseButton,
@@ -56,6 +57,9 @@ export default function PhotoDetailView({
               unoptimized
             />
           </LightboxImageWrap>
+          <LightboxCounter>
+            {selectedIndex + 1} / {photos.length}
+          </LightboxCounter>
           <NavButton
             $left
             type="button"

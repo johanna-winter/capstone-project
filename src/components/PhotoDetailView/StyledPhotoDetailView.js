@@ -39,6 +39,26 @@ export const LightboxHeader = styled.header`
   z-index: 2;
 `;
 
+export const LightboxCounter = styled.div`
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  font-size: 14px;
+  opacity: 0.9;
+  padding: 6px 10px;
+  border-radius: 50px;
+
+  color: var(--grey-900);
+  background: rgba(0, 0, 0, 0.35);
+
+  @media (min-width: 550px) {
+    color: var(--grey-300);
+    background: rgba(0, 0, 0, 0.35);
+  }
+`;
+
 export const LightboxImageWrap = styled.div`
   position: relative;
   width: 100%;
