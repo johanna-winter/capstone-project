@@ -38,7 +38,7 @@ export default function GuestUploadPage({ event, eventId }) {
           memory wall.
         </GalleryCalloutText>
 
-        <GalleryLinkButton href={`/events/${eventId}/gallery`}>
+        <GalleryLinkButton href={`/events/${eventId}/gallery?from=upload`}>
           View the gallery
         </GalleryLinkButton>
       </GalleryCallout>

@@ -12,7 +12,7 @@ const fetcher = async (url) => {
 
 export default function GalleryPage() {
   const router = useRouter();
-  const { eventId } = router.query;
+  const { eventId, from } = router.query;
   const { status } = useSession();
 
   const {
@@ -27,11 +27,14 @@ export default function GalleryPage() {
   if (error) return <p>Failed to load event gallery</p>;
   if (isLoading || !event) return <p>Loading event gallery...</p>;
 
+  const isOrganizer = status === "authenticated";
+  const cameFromUpload = from === "upload";
+
   return (
     <>
-      {" "}
-      {status === "authenticated" && (
-        <BackButton href={`/events/${eventId}/`}></BackButton>
+      {isOrganizer && <BackButton fallbackHref={`/events/${eventId}/`} />}
+      {!isOrganizer && cameFromUpload && (
+        <BackButton fallbackHref={`/events/${eventId}/upload`} />
       )}
       <MemoryWallGallery event={event} />
     </>

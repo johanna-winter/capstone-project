@@ -66,6 +66,6 @@ export const GalleryLinkButton = styled(Link)`
   text-decoration: none;
 
   &:hover {
-    background: var(--primary-600);
+    opacity: 0.8;
   }
 `;
