@@ -1,6 +1,7 @@
 import Image from "next/image";
 import {
   LightboxContainer,
+  LightboxBackdrop,
   LightboxCard,
   LightboxHeader,
   LightboxMedia,
@@ -17,7 +18,7 @@ export default function PhotoDetailView({
 
   return (
     <LightboxContainer>
-      <div aria-hidden="true"></div>
+      <LightboxBackdrop aria-hidden="true" onClick={onClose} />
       <LightboxCard>
         <LightboxHeader>
           <CloseButton type="button" onClick={onClose}>

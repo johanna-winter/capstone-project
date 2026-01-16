@@ -10,6 +10,12 @@ export const LightboxContainer = styled.div`
   padding: 16px;
 `;
 
+export const LightboxBackdrop = styled.div`
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+`;
+
 export const LightboxCard = styled.section`
   width: min(900px, 100%);
   background: var(--background-300);
