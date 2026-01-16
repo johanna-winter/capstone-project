@@ -1,4 +1,11 @@
 import Image from "next/image";
+import {
+  LightboxContainer,
+  LightboxCard,
+  LightboxHeader,
+  LightboxMedia,
+  CloseButton,
+} from "./StyledPhotoDetailView";
 
 export default function PhotoDetailView({
   photos = [],
@@ -9,21 +16,24 @@ export default function PhotoDetailView({
   if (!photo) return null;
 
   return (
-    <>
-      <section>
-        <button type="button" onClick={onClose}>
-          Close
-        </button>
-      </section>
+    <LightboxContainer>
+      <div aria-hidden="true"></div>
+      <LightboxCard>
+        <LightboxHeader>
+          <CloseButton type="button" onClick={onClose}>
+            Close
+          </CloseButton>
+        </LightboxHeader>
 
-      <section>
-        <Image
-          src={photo.imageUrl}
-          alt="Memory photo"
-          width={200}
-          height={200}
-        />
-      </section>
-    </>
+        <LightboxMedia>
+          <Image
+            src={photo.imageUrl}
+            alt="Memory photo"
+            width={400}
+            height={300}
+          />
+        </LightboxMedia>
+      </LightboxCard>
+    </LightboxContainer>
   );
 }
