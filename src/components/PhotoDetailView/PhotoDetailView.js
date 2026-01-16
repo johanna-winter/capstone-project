@@ -22,7 +22,7 @@ export default function PhotoDetailView({
       <LightboxCard>
         <LightboxHeader>
           <CloseButton type="button" onClick={onClose}>
-            Close
+            x
           </CloseButton>
         </LightboxHeader>
 
