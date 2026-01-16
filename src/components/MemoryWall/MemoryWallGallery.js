@@ -18,6 +18,20 @@ export default function MemoryWallGallery({ event }) {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(0);
 
+  function onNext() {
+    setSelectedIndex((current) => {
+      if (uploads.length === 0) return 0;
+      return (current + 1) % uploads.length;
+    });
+  }
+
+  function onPrev() {
+    setSelectedIndex((current) => {
+      if (uploads.length === 0) return 0;
+      return (current - 1) % uploads.length;
+    });
+  }
+
   return (
     <GallerySection>
       <GalleryTitle>{event.title} Photo Gallery</GalleryTitle>
@@ -63,6 +77,8 @@ export default function MemoryWallGallery({ event }) {
           photos={uploads}
           selectedIndex={selectedIndex}
           onClose={() => setIsOpen(false)}
+          onNext={onNext}
+          onPrev={onPrev}
         />
       )}
     </GallerySection>

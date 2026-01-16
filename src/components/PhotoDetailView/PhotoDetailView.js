@@ -13,20 +13,22 @@ export default function PhotoDetailView({
   photos = [],
   selectedIndex = 0,
   onClose,
+  onNext,
+  onPrev,
 }) {
   const photo = photos[selectedIndex];
 
   useEffect(() => {
     function handleEscapeKey(event) {
       if (event.key === "Escape") {
-        onClose();
+        onClose?.();
       }
     }
     document.addEventListener("keydown", handleEscapeKey);
     return () => {
       document.removeEventListener("keydown", handleEscapeKey);
     };
-  });
+  }, [onClose]);
 
   if (!photo) return null;
 
@@ -47,6 +49,12 @@ export default function PhotoDetailView({
             width={400}
             height={300}
           />
+          <button type="button" onClick={onPrev} aria-label="Previous photo">
+            Prev
+          </button>
+          <button type="button" onClick={onNext} aria-label="Next photo">
+            Next
+          </button>
         </LightboxMedia>
       </LightboxCard>
     </LightboxContainer>
