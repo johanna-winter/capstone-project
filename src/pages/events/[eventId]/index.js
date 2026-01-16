@@ -1,11 +1,16 @@
 import EventDetails from "@/components/EventDetails/EventDetails";
 import BackButton from "@/components/BackButton/BackButton";
-import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import useSWR from "swr";
 import { useSession } from "next-auth/react";
 import MemoryWallGallery from "@/components/MemoryWall/MemoryWallGallery";
+import {
+  AccessDeniedText,
+  AccessDeniedTitle,
+  AccessDeniedWrapper,
+  LoginLink,
+} from "@/components/EventDetails/StyledEventDetails";
 
 const fetcher = async (url) => {
   const res = await fetch(url);
@@ -78,11 +83,11 @@ export default function EventDetailOrganizerPage() {
   }
   if (status !== "authenticated") {
     return (
-      <>
-        <h2>Access denied!</h2>
-        <p>Please log in to manage this event.</p>
-        <Link href="/login">Go to Login</Link>
-      </>
+      <AccessDeniedWrapper>
+        <AccessDeniedTitle>Access denied!</AccessDeniedTitle>
+        <AccessDeniedText>Please log in to manage this event.</AccessDeniedText>
+        <LoginLink href="/login">→ Go to Login</LoginLink>
+      </AccessDeniedWrapper>
     );
   }
 

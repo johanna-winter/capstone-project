@@ -1,6 +1,33 @@
 import Link from "next/link";
 import styled from "styled-components";
 
+export const AccessDeniedWrapper = styled.section`
+  max-width: 42rem;
+  margin: 4rem auto;
+  padding: 2rem;
+  text-align: center;
+  background-color: var(--background-400);
+  border-radius: 12px;
+`;
+
+export const AccessDeniedTitle = styled.h2`
+  margin-bottom: 0.75rem;
+`;
+
+export const AccessDeniedText = styled.p`
+  margin-bottom: 1.5rem;
+`;
+
+export const LoginLink = styled(Link)`
+  text-decoration: none;
+  font-weight: 800;
+  color: var(--accent-600);
+
+  &:hover {
+    text-decoration: underline;
+  }
+`;
+
 export const EventCard = styled.section`
   position: relative;
   background-color: var(--background-400);
