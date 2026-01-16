@@ -33,7 +33,7 @@ export default function HomePage() {
   return (
     <>
       <LoginGreeting>
-        Hello{session.user?.name ? `, ${session.user.name}` : ""} &#128075;
+        Hello{session.user?.name ? `, ${session.user.name}!` : "!"} &#128075;
       </LoginGreeting>
       <EventForm onSubmit={handleCreateEvent} />
       <EventList />

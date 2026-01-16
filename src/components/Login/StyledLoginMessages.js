@@ -18,6 +18,8 @@ export const LoginMessage = styled.p`
 export const LoginGreeting = styled.p`
   margin-top: 2rem;
   font-size: 1rem;
+  font-style: italic;
+  font-weight: 500;
   line-height: 1;
   white-space: nowrap;
   color: var(--grey-900);

@@ -2,6 +2,7 @@ import styled from "styled-components";
 import LoginAuthButton from "./Login/LoginAuthButton";
 import { useSession } from "next-auth/react";
 import LoggedOutFooter from "./FooterLoggedOut/FooterLoggedOut";
+import Link from "next/link";
 
 export default function Layout({ children }) {
   const { status } = useSession();
@@ -11,7 +12,9 @@ export default function Layout({ children }) {
       <Main>
         <Header>
           <HeaderNav>
-            <Title>Memory Wall</Title>
+            <TitleLink href="/">
+              <Title>Memory Wall</Title>
+            </TitleLink>
             <AuthArea>
               {status === "authenticated" && <LoginAuthButton />}
             </AuthArea>
@@ -32,7 +35,7 @@ const PageWrapper = styled.div`
 
 const Main = styled.main`
   flex: 1;
-  padding: 80px 1rem 0;
+  padding: 80px 1rem 1rem;
 
   @media (min-width: 421px) {
     padding-top: 80px;
@@ -59,17 +62,26 @@ export const HeaderNav = styled.nav`
   align-items: center;
 `;
 
-const Title = styled.h1`
+export const TitleLink = styled(Link)`
   grid-column: 2;
   justify-self: center;
+  text-decoration: none;
+  color: inherit;
+  display: inline-block;
+
+  @media (max-width: 520px) {
+    grid-column: 1;
+    justify-self: start;
+  }
+`;
+
+const Title = styled.h1`
   margin: 0;
   font-size: 2.2rem;
   color: var(--background-300);
   white-space: nowrap;
 
   @media (max-width: 520px) {
-    grid-column: 1;
-    justify-self: start;
     font-size: 1.9rem;
   }
   @media (max-width: 360px) {
