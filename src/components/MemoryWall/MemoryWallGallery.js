@@ -54,6 +54,7 @@ export default function MemoryWallGallery({ event }) {
                   fill
                   sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
                   unoptimized
+                  loading="eager"
                 ></Image>
               </GalleryImageWrapper>
               {(upload.name || upload.caption) && (

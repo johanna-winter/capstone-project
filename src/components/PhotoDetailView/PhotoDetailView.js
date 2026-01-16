@@ -4,8 +4,10 @@ import {
   LightboxBackdrop,
   LightboxCard,
   LightboxHeader,
+  LightboxImageWrap,
   LightboxMedia,
   CloseButton,
+  NavButton,
 } from "./StyledPhotoDetailView";
 import { useEffect } from "react";
 import { X, ChevronLeft, ChevronRight, Heart } from "lucide-react";
@@ -44,18 +46,32 @@ export default function PhotoDetailView({
         </LightboxHeader>
 
         <LightboxMedia>
-          <Image
-            src={photo.imageUrl}
-            alt="Memory photo"
-            width={400}
-            height={300}
-          />
-          <button type="button" onClick={onPrev} aria-label="Previous photo">
-            <ChevronLeft size={22} />
-          </button>
-          <button type="button" onClick={onNext} aria-label="Next photo">
-            <ChevronRight size={22} />
-          </button>
+          <LightboxImageWrap>
+            <Image
+              src={photo.imageUrl}
+              alt="Memory photo"
+              sizes="(max-width: 600px) 92vw, (max-width: 1024px) 80vw, 900px"
+              loading="eager"
+              fill
+              unoptimized
+            />
+          </LightboxImageWrap>
+          <NavButton
+            $left
+            type="button"
+            onClick={onPrev}
+            aria-label="Previous photo"
+          >
+            <ChevronLeft size={26} />
+          </NavButton>
+          <NavButton
+            $right
+            type="button"
+            onClick={onNext}
+            aria-label="Next photo"
+          >
+            <ChevronRight size={26} />
+          </NavButton>
         </LightboxMedia>
       </LightboxCard>
     </LightboxContainer>
