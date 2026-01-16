@@ -3,9 +3,16 @@ import LoginAuthButton from "./Login/LoginAuthButton";
 import { useSession } from "next-auth/react";
 import LoggedOutFooter from "./FooterLoggedOut/FooterLoggedOut";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 export default function Layout({ children }) {
   const { status } = useSession();
+  const router = useRouter();
+
+  const hideLoginAuthButton =
+    status !== "authenticated" &&
+    (router.pathname === "/events/[eventId]/upload" ||
+      router.pathname === "/events/[eventId]/gallery");
 
   return (
     <PageWrapper>
@@ -15,9 +22,7 @@ export default function Layout({ children }) {
             <TitleLink href="/">
               <Title>Memory Wall</Title>
             </TitleLink>
-            <AuthArea>
-              {status === "authenticated" && <LoginAuthButton />}
-            </AuthArea>
+            <AuthArea>{!hideLoginAuthButton && <LoginAuthButton />}</AuthArea>
           </HeaderNav>
         </Header>
         {children}
