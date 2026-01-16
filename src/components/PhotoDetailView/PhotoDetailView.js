@@ -8,6 +8,7 @@ import {
   CloseButton,
 } from "./StyledPhotoDetailView";
 import { useEffect } from "react";
+import { X, ChevronLeft, ChevronRight, Heart } from "lucide-react";
 
 export default function PhotoDetailView({
   photos = [],
@@ -19,16 +20,16 @@ export default function PhotoDetailView({
   const photo = photos[selectedIndex];
 
   useEffect(() => {
-    function handleEscapeKey(event) {
-      if (event.key === "Escape") {
-        onClose?.();
-      }
+    function handleKeyEvent(event) {
+      if (event.key === "Escape") onClose?.();
+      if (event.key === "ArrowLeft") onPrev?.();
+      if (event.key === "ArrowRight") onNext?.();
     }
-    document.addEventListener("keydown", handleEscapeKey);
+    document.addEventListener("keydown", handleKeyEvent);
     return () => {
-      document.removeEventListener("keydown", handleEscapeKey);
+      document.removeEventListener("keydown", handleKeyEvent);
     };
-  }, [onClose]);
+  }, [onClose, onPrev, onNext]);
 
   if (!photo) return null;
 
@@ -37,8 +38,8 @@ export default function PhotoDetailView({
       <LightboxBackdrop aria-hidden="true" onClick={onClose} />
       <LightboxCard>
         <LightboxHeader>
-          <CloseButton type="button" onClick={onClose}>
-            x
+          <CloseButton type="button" onClick={onClose} aria-label="Close">
+            <X size={20} />
           </CloseButton>
         </LightboxHeader>
 
@@ -50,10 +51,10 @@ export default function PhotoDetailView({
             height={300}
           />
           <button type="button" onClick={onPrev} aria-label="Previous photo">
-            Prev
+            <ChevronLeft size={22} />
           </button>
           <button type="button" onClick={onNext} aria-label="Next photo">
-            Next
+            <ChevronRight size={22} />
           </button>
         </LightboxMedia>
       </LightboxCard>
