@@ -87,6 +87,8 @@ export const StatusMessage = styled.p`
   padding: 0.75rem 1rem;
   border-radius: 6px;
   font-weight: bold;
+  max-width: 44rem;
+  margin: 0 auto 1rem;
   background-color: ${(props) =>
     props.$success ? "var(--success-100)" : "var(--error-100)"};
   border: 1px solid

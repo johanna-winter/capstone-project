@@ -19,6 +19,7 @@ export default function GalleryPage() {
     data: event,
     error,
     isLoading,
+    mutate,
   } = useSWR(
     router.isReady && eventId ? `/api/events/${eventId}` : null,
     fetcher
@@ -36,7 +37,11 @@ export default function GalleryPage() {
       {!isOrganizer && cameFromUpload && (
         <BackButton fallbackHref={`/events/${eventId}/upload`} />
       )}
-      <MemoryWallGallery event={event} />
+      <MemoryWallGallery
+        event={event}
+        mutate={mutate}
+        isOrganizer={isOrganizer}
+      />
     </>
   );
 }

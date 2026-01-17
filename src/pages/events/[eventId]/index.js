@@ -78,6 +78,8 @@ export default function EventDetailOrganizerPage() {
     }
   }
 
+  const isOrganizer = status === "authenticated";
+
   if (status === "loading") {
     return null;
   }
@@ -105,7 +107,11 @@ export default function EventDetailOrganizerPage() {
         onDelete={handleDelete}
         deleteError={deleteError}
       />
-      <MemoryWallGallery event={event} />
+      <MemoryWallGallery
+        event={event}
+        mutate={mutate}
+        isOrganizer={isOrganizer}
+      />
     </>
   );
 }
