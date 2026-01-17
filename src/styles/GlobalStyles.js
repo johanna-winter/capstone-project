@@ -8,6 +8,7 @@ const GlobalStyles = createGlobalStyle`
     --primary-600: #003532;
 
     --background-100: #ffffff;
+    --background-200: #e7d9d5;
     --background-300: #ecd6d5;
     --background-400: #d9afb2;
     --background-500: #a6818b;

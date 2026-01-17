@@ -10,9 +10,28 @@ import {
   GalleryImageName,
   GalleryImageCaption,
 } from "./StyledMemoryWallGallery";
+import PhotoDetailView from "@/components/PhotoDetailView/PhotoDetailView";
+import { useState } from "react";
 
 export default function MemoryWallGallery({ event }) {
   const uploads = event.uploads ?? [];
+  const [isOpen, setIsOpen] = useState(false);
+  const [selectedIndex, setSelectedIndex] = useState(0);
+
+  function onNext() {
+    setSelectedIndex((current) => {
+      if (uploads.length === 0) return 0;
+      return (current + 1) % uploads.length;
+    });
+  }
+
+  function onPrev() {
+    setSelectedIndex((current) => {
+      if (uploads.length === 0) return 0;
+      return (current - 1) % uploads.length;
+    });
+  }
+
   return (
     <GallerySection>
       <GalleryTitle>{event.title} Photo Gallery</GalleryTitle>
@@ -20,8 +39,14 @@ export default function MemoryWallGallery({ event }) {
         <GalleryEmptyState>No photos added yet.</GalleryEmptyState>
       ) : (
         <GalleryGridLayout>
-          {uploads.map((upload) => (
-            <GalleryItem key={upload._id}>
+          {uploads.map((upload, index) => (
+            <GalleryItem
+              key={upload._id}
+              onClick={() => {
+                setSelectedIndex(index);
+                setIsOpen(true);
+              }}
+            >
               <GalleryImageWrapper>
                 <Image
                   src={upload.imageUrl}
@@ -29,6 +54,7 @@ export default function MemoryWallGallery({ event }) {
                   fill
                   sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
                   unoptimized
+                  loading="eager"
                 ></Image>
               </GalleryImageWrapper>
               {(upload.name || upload.caption) && (
@@ -46,6 +72,15 @@ export default function MemoryWallGallery({ event }) {
             </GalleryItem>
           ))}
         </GalleryGridLayout>
+      )}
+      {isOpen && (
+        <PhotoDetailView
+          photos={uploads}
+          selectedIndex={selectedIndex}
+          onClose={() => setIsOpen(false)}
+          onNext={onNext}
+          onPrev={onPrev}
+        />
       )}
     </GallerySection>
   );
