@@ -13,7 +13,7 @@ import {
 import PhotoDetailView from "@/components/PhotoDetailView/PhotoDetailView";
 import { useState } from "react";
 
-export default function MemoryWallGallery({ event }) {
+export default function MemoryWallGallery({ event, mutate }) {
   const uploads = event.uploads ?? [];
   const [isOpen, setIsOpen] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(0);
@@ -30,6 +30,24 @@ export default function MemoryWallGallery({ event }) {
       if (uploads.length === 0) return 0;
       return (current - 1) % uploads.length;
     });
+  }
+
+  async function handleDelete(uploadId) {
+    const confirmed = window.confirm(
+      "Delete this upload permanently? This cannot be undone."
+    );
+    if (!confirmed) return;
+
+    try {
+      const response = await fetch(
+        `/api/events/${event._id}/uploads/${uploadId}`,
+        { method: "DELETE" }
+      );
+      if (!response.ok) throw new Error("Delete failed");
+      await mutate();
+    } catch (error) {
+      alert("Something went wrong. Please try again.");
+    }
   }
 
   return (
