@@ -1,6 +1,6 @@
 import MemoryWallGallery from "@/components/MemoryWall/MemoryWallGallery";
 import { useRouter } from "next/router";
-import useSWR, { mutate } from "swr";
+import useSWR from "swr";
 import BackButton from "@/components/BackButton/BackButton";
 import { useSession } from "next-auth/react";
 
@@ -37,7 +37,11 @@ export default function GalleryPage() {
       {!isOrganizer && cameFromUpload && (
         <BackButton fallbackHref={`/events/${eventId}/upload`} />
       )}
-      <MemoryWallGallery event={event} mutate={mutate} />
+      <MemoryWallGallery
+        event={event}
+        mutate={mutate}
+        isOrganizer={isOrganizer}
+      />
     </>
   );
 }
