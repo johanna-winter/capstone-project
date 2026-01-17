@@ -19,11 +19,11 @@ export const LightboxBackdrop = styled.div`
 export const LightboxCard = styled.section`
   position: relative;
   z-index: 1;
-  width: min(870px, 100%);
+  width: min(900px, 100%);
   height: min(55vh, 720px);
 
   @media (min-width: 1200px) {
-    height: min(65vh, 640px);
+    height: min(62vh, 640px);
   }
 
   background: rgba(236, 214, 213, 0.88);

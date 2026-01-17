@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import {
   StyledEventForm,
+  StyledEventTitle,
   StyledFormLabel,
   StyledFormInput,
   CreateButton,
@@ -69,7 +70,7 @@ export default function EventForm({ event, onSubmit }) {
   return (
     <>
       <StyledEventForm onSubmit={handleSubmit}>
-        {!isEditMode && <h2>Add your event</h2>}
+        {!isEditMode && <StyledEventTitle>Create your event</StyledEventTitle>}
         {isEditMode && <h2>Edit your event</h2>}
         <StyledFormLabel htmlFor="event-title">Title:</StyledFormLabel>
         <StyledFormInput

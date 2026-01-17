@@ -6,6 +6,11 @@ export const StyledEventForm = styled.form`
   gap: 0.75rem;
 `;
 
+export const StyledEventTitle = styled.h2`
+  text-align: center;
+  font-weight: 600;
+`;
+
 export const StyledFormLabel = styled.label`
   font-weight: bold;
 `;
@@ -14,13 +19,13 @@ export const StyledFormInput = styled.input`
   padding: 0.5rem;
   border-radius: 8px;
   border: 1px solid var(--grey-700);
-  background-color: var(--grey-100);
+  background-color: var(--background-200);
 `;
 
 export const CreateButton = styled.button`
   padding: 0.5rem 1.75rem;
   display: block;
-  margin: 0 auto;
+  margin: 1rem auto;
   cursor: pointer;
   border: 1px solid var(--grey-900);
   border-radius: 6px;
