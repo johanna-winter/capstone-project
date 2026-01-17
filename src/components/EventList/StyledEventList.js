@@ -10,6 +10,11 @@ export const EventListGrid = styled.ul`
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
 `;
 
+export const EventListTitle = styled.h2`
+  text-align: center;
+  font-weight: 600;
+`;
+
 export const StyledLink = styled(Link)`
   text-decoration: none;
   color: var(--grey-900);

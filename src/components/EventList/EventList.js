@@ -1,6 +1,6 @@
 import useSWR from "swr";
 import { EventCard } from "../EventCard/EventCard";
-import { EventListGrid } from "./StyledEventList";
+import { EventListGrid, EventListTitle } from "./StyledEventList";
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
@@ -15,7 +15,7 @@ export default function EventList() {
 
   return (
     <>
-      <h2>Events Overview</h2>
+      <EventListTitle>Your Events</EventListTitle>
       <EventListGrid>
         {sortedEvents.map((event) => (
           <EventCard key={event._id} event={event}></EventCard>
